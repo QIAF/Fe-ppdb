@@ -1,0 +1,261 @@
+body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+/* Bagian Navbar Landing Page */
+
+.bagian-mengapa{
+    background-color: #816503;
+}
+
+.menu-items-desktop-v2 {
+    grid-column-gap: 24px;
+    grid-row-gap: 24px;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: 0;
+    display: flex;
+}
+
+.menu-home-desktop-v2,
+.menu-bidang-keahlian-desktop-v2,
+.menu-alur-pendaftaran-desktop-v2,
+.nav-item {
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
+    color: white;
+    cursor: pointer;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-columns: 1fr;
+    font-family: 'intern', sans-serif;
+    font-size: 16px !important;
+    font-weight: 600;
+    line-height: 24px;
+    text-decoration: none;
+    display: flex;
+}
+
+.menu-pendaftaran-v2.w-button {
+    color: #11573F;
+    line-height: inherit;
+    cursor: pointer;
+    background-color: #3898ec;
+    border: 0;
+    border-radius: 0;
+    padding: 9px 15px;
+    text-decoration: none;
+    display: inline-block;
+    height: auto;
+    letter-spacing: normal;
+    text-indent: 0;
+    background-color: #D9D9D9;
+    border-radius: 8px;
+    padding: 13px 24px;
+    font-family: Causten semi, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22px;
+}
+
+
+/* Bagian Hero */
+.heroes-lp {
+    background-color: #11573F;
+}
+/* hero major desc */
+
+.title-heroes {
+    color: white;
+    font-family: 'Commissioner', sans-serif;
+}
+
+.btn-daftar {
+    color: white;
+    line-height: inherit;
+    cursor: pointer;
+    background-color: #3898ec;
+    border: 0;
+    border-radius: 0;
+    padding: 9px 15px;
+    text-decoration: none;
+    display: inline-block;
+    height: auto;
+    letter-spacing: normal;
+    text-indent: 0;
+    background-color: #816503;
+    border-radius: 8px;
+    padding: 13px 24px;
+    font-family: Causten semi, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22px;
+    margin-bottom: 30px;
+
+}
+.img-google{
+    max-width: 25px;
+}
+
+.title-tentang,
+.title-mengapa-lp {
+    color: black;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    border-width: 50%;
+    text-underline-position: auto;
+    font-family: 'Lato', sans-serif;
+
+}
+
+.desk-tentang {
+    color: #11573F;
+    font-family: 'lato', sans-serif;
+    font-size: 15px;
+
+}
+
+.banner-landing-page {
+    margin-top: 50px;
+    color: white;
+    border-radius: 20px;
+}
+
+.banner-sekilas {
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.sekilas-img {
+    float: right;
+}
+
+.title-mengapa-lp {
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+
+/* Bidang keahlian */
+
+.title-bidang-keahlian {
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.h-100 {
+    background-color: #E6F0FB;
+
+}
+
+/* Alur Pendaftaran */
+
+.title-alur,
+.title-bidang-keahlian {
+    margin-top: 100px;
+    color: #816503;
+    font-family: 'Commissioner', sans-serif;
+}
+
+.alur-pendaftaran {
+    margin-top: 100px;
+    border-spacing: 5px;
+}
+
+.alur-daftar {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    float: right;
+}
+
+.alur-daftar1 {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+}
+
+.banner-daftar-online {
+    margin-top: 100px;
+    background-color: #d7e1eb;
+    height: auto;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+}
+
+.title-daftar-online, .tenaga-pendidik {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    color: #816503;
+    font-family: 'Commissioner', sans-serif;
+}
+
+.img-tutor-online {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    float: right;
+    justify-content: center;
+}
+
+.persyaratan-pandaftaran {
+    margin-top: 100px;
+    font-family: 'Commissioner', sans-serif;
+}
+
+#table-persyaratan {
+    border-collapse: separate;
+    border-spacing: 40px 10px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* bagian informasi pendaftaran lp */
+
+.title-informasi-pendaftaran {
+    margin-top: 100px;
+    margin-bottom: 30px;
+    font-family: 'Commissioner', sans-serif;
+
+}
+
+.banner-pendaftar1,
+.banner-pendaftar2 {
+    background-color: #E6F0FB;
+    border-spacing: 15px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+}
+
+.total {
+    font-family: 'Commissioner', sans-serif;
+    font-size: 96px;
+    color: #816503;
+
+}
+/* bagian faq */
+.title-faq {
+    margin-top: 100px;
+    margin-bottom: 50px;
+    font-family: 'Commissioner', sans-serif;
+
+}
+/* area footer */
+.footer-lp {
+    margin-top: 100px;
+    background: #11573F;
+    color: white;
+}
+
+.title-logo-smk {
+    color: white;
+}
+
+.img-logo-smk {
+    max-width: 400px;
+}
+.text-major{
+    margin-top: 80px;
+}

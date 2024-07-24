@@ -1,0 +1,19 @@
+.image-edu{
+    max-width: 30px;
+}
+
+.custom-modal {
+    border-radius: 1.8rem;
+    padding: 1.5rem;
+    gap: 2rem;
+    background: #FFF;
+    box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.10);
+    max-width: 17.9375rem;
+}
+
+.wrapper-modal {
+    position: fixed;
+    z-index: 60;
+    top: 20%;
+    left: 20%;
+}

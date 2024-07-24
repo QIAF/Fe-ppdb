@@ -1,0 +1,36 @@
+.navbar-major{
+    width: 100%;
+    background-color: white;
+    position: fixed;
+}
+.title-navbar {
+    color: #11573F;
+}
+.logo-smk-hijau{
+    max-width: 200px;
+}
+.title-heroes-major{
+    color: #11573F;
+}
+.img-student-major{
+    max-width: 300px;
+    max-height: 300px;
+}
+.title-major-major{
+    color: #11573F;
+    margin-bottom: 30px;
+
+}
+
+/* card section */
+
+.card-img-top{
+    max-width: 200px;
+}
+.title-card{
+    color: #816503;
+}
+.card-text{
+    font-size: 15px;
+    text-align: justify;
+}
