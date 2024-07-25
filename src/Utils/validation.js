@@ -348,6 +348,7 @@ export const dataStudent = (formData) => {
     ijazah_number: formData.ijazah_number,
     nisn: formData.nisn,
     studentDocument: formData.studentDocument,
+    // studentDocument: formData.studentDocument instanceof File ? formData.studentDocument : null,
 
     mathematics1: formData.mathematics1,
     mathematics2: formData.mathematics2,

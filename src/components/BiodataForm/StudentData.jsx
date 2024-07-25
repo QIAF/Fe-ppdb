@@ -15,7 +15,7 @@ function StudentData({ formData, handleInput, error , handleChange}) {
             <div className="body center ">
               <div className="student-data">
                 <div className="row mb-3">
-                  <label htmlFor="inputFullName" className="col col-form-label">
+                  <label htmlFor="student_name" className="col col-form-label">
                     Nama Lengkap
                   </label>
                   <div className="col-sm-8 ">
@@ -42,8 +42,8 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                       type={"radio"}
                       id={"Laki-Laki"}
                       className={"form-check-input"}
-                      name={"student_gender"}
-                      value={"Laki-Laki"}
+                      name="student_gender"
+                      value="Laki-Laki"
                       checked={formData.student_gender === "Laki-Laki"}
                       onChange={handleChange}
                       // defaultChecked={formData.student_gender === "Laki-Laki"}
@@ -58,8 +58,8 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                       type={"radio"}
                       id={"Perempuan"}
                       className={"form-check-input"}
-                      name={"student_gender"}
-                      value={"Perempuan"}
+                      name="student_gender"
+                      value="Perempuan"
                       checked={formData.student_gender === "Perempuan"}
                       onChange={handleChange}
                       // defaultChecked={formData.student_gender === "Perempuan"}
@@ -71,7 +71,7 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                 </div>
                 <div className="row mb-3">
                   <label
-                    htmlFor="inputplace_birth"
+                    htmlFor="place_birth"
                     className="col col-form-label"
                   >
                     Tempat lahir
@@ -91,7 +91,7 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                 </div>
                 <div className="row mb-3">
                   <label
-                    htmlFor="inputdate_birth"
+                    htmlFor="date_birth"
                     className="col col-form-label"
                   >
                     Tanggal lahir
@@ -105,12 +105,12 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                       value={formData.date_birth}
                       onChange={handleInput}
                     />
-                     <ErrMsg msg={error.date_birthh} />
+                     <ErrMsg msg={error.date_birth} />
                   </div>
                 </div>
                 <div className="row mb-3">
                   <label
-                    htmlFor="inputstudent_address"
+                    htmlFor="student_address"
                     className="col col-form-label"
                   >
                     Alamat Asal
@@ -129,7 +129,7 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                 </div>
                 <div className="row mb-3">
                   <label
-                    htmlFor="inputstudent_distance"
+                    htmlFor="student_distance"
                     className="col col-form-label"
                   >
                     Jarak rumah ke sekolah
@@ -139,7 +139,7 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                       type={"text"}
                       className={"form-control"}
                       id={"student_distance"}
-                      name={"student_distance"}
+                      name="student_distance"
                       value={formData.student_distance}
                       onChange={handleInput}
                     />
@@ -148,7 +148,7 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                 </div>
                 <div className="row mb-3">
                   <label
-                    htmlFor="inputStudent_religion"
+                    htmlFor="student_religion"
                     className="col col-form-label"
                   >
                     Agama
@@ -167,7 +167,7 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                 </div>
                 <div className="row mb-3">
                   <label
-                    htmlFor="inputstudent_blood_type"
+                    htmlFor="student_blood_type"
                     className="col col-form-label"
                   >
                     Golongan Darah
@@ -185,7 +185,7 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                   </div>
                 </div>
                 <div className="row mb-3">
-                  <label htmlFor="inputHeight" className="col col-form-label">
+                  <label htmlFor="student_height" className="col col-form-label">
                     Tinggi Badan
                   </label>
                   <div className="col-sm-8">
@@ -201,7 +201,7 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                   </div>
                 </div>
                 <div className="row mb-3">
-                  <label htmlFor="inputWeight" className="col col-form-label">
+                  <label htmlFor="student_weight" className="col col-form-label">
                     Berat Badan
                   </label>
                   <div className="col-sm-8">
@@ -217,7 +217,7 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                   </div>
                 </div>
                 <div className="row mb-3">
-                  <label htmlFor="inputChild" className="col col-form-label">
+                  <label htmlFor="student_child" className="col col-form-label">
                     Anak ke-
                   </label>
                   <div className="col-sm-8">
@@ -234,7 +234,7 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                 </div>
                 <div className="row mb-3">
                   <label
-                    htmlFor="inputstudent_kps"
+                    htmlFor="student_kps"
                     className="col col-form-label"
                   >
                     student_kps
@@ -253,7 +253,7 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                 </div>
                 <div className="row mb-3">
                   <label
-                    htmlFor="inputstudent_hobby"
+                    htmlFor="student_hobby"
                     className="col col-form-label"
                   >
                     Hobi
