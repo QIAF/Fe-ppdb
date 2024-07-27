@@ -9,7 +9,7 @@ function StudentSchool({ handleInput, formData, error }) {
         <div className="table-responsive container ">
           <div className="center">
             <div className="header">
-              <h5 style={{ color: "#816503" }}>Masukkan Data Wali</h5>
+              <h5 style={{ color: "#816503" }}>Raport</h5>
             </div>
             <br />
             <div className="body center ">

@@ -42,6 +42,8 @@ function StudentFileData({ error, setFormData, formData }) {
 				<ErrMsg msg={error.studentDocument} />
 			</div>
 		</div>
+
+		
 	);
 }
 

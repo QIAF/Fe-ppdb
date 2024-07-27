@@ -96,7 +96,7 @@ function StudentParentData({ handleInput, formData, error }) {
                     htmlFor="inputplace_birth_mother"
                     className="col col-form-label"
                   >
-                    Tempat Lahir
+                    Tempat Lahir Ibu
                   </label>
                   <div className="col-sm-8">
                     <textarea
@@ -116,7 +116,7 @@ function StudentParentData({ handleInput, formData, error }) {
                     htmlFor="inputmother_birth"
                     className="col col-form-label"
                   >
-                    Tanggal Lahir
+                    Tanggal Lahir Ibu
                   </label>
                   <div className="col-sm-8">
                     <Input
