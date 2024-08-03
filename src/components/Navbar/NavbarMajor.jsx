@@ -8,12 +8,7 @@ function NavbarMajor() {
   const [modalLogin, setmodalLogin] = useState(false);
   const navigate = useNavigate();
   function handleClick(route) {
-    if (route === "/") {
-      navigate("/");
-    } else if (route === "MajorPage") {
-      navigate("/");
-    } else {
-    }
+    navigate(route);
   }
   const location = useLocation();
   const hash = location.hash;
@@ -50,7 +45,7 @@ function NavbarMajor() {
             <li>
               <a
                 className="major-page active"
-                onClick={() => handleClick("MajorPage")}
+                onClick={() => handleClick("")}
               >
                 Bidang Keahlian
               </a>

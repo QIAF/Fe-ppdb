@@ -8,12 +8,7 @@ function Navbar() {
   const [modalLogin, setmodalLogin] = useState(false);
   const navigate = useNavigate();
   function handleClick(route) {
-    if (route === "/") {
-      navigate("/");
-    } else if (route === "MajorPage") {
-      navigate("bidangKeahlian");
-    } else {
-    }
+    navigate(route);
   }
 
   const location = useLocation();
@@ -48,7 +43,9 @@ function Navbar() {
               </a>
             </li>
             <li>
-              <a onClick={() => handleClick("MajorPage")}>Bidang Keahlian</a>
+              <a onClick={() => handleClick("/bidangKeahlian")}>
+                Bidang Keahlian
+              </a>
             </li>
             <li>
               <a href="#alur-daftar">Alur Pendaftaran</a>

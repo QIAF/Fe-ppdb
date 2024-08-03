@@ -7,12 +7,7 @@ function NavbarForm() {
   const [modalLogin, setmodalLogin] = useState(false);
   const navigate = useNavigate();
   function handleClick(route) {
-    if (route === "/") {
-      navigate("/");
-    } else if (route === "MajorPage") {
-      navigate("/");
-    } else {
-    }
+    navigate(route);
   }
 
   const location = useLocation();

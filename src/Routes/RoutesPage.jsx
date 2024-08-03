@@ -5,7 +5,7 @@ import StudentDetail from "../components/BiodataForm/StudentDetail";
 import BiodataPage from "../pages/Biodata/BiodataPage";
 import "react-toastify/dist/ReactToastify.css";
 import { Login } from "../pages/Login/Login";
-import MajorPage from "../pages/Major/MajorPage";
+import StudentMajor from "../pages/Major/StudentMajor";
 
 export const RoutesPage = () => {
   return (
@@ -16,8 +16,8 @@ export const RoutesPage = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/formData" element={<BiodataPage />} />
           <Route path="/detailData" element={<StudentDetail />} />
-          <Route path="/bidangKeahlian" element={<MajorPage />} />
         </Route>
+        <Route path="/bidangKeahlian" element={<StudentMajor />} />
       </Routes>
     </>
   );
