@@ -1,17 +1,16 @@
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { useState } from "react";
-import { Login } from "../../pages/Login/Login";
-import ImgLogo from "../../assets/images/img-logo-white.png";
 import "./Navbar.css";
+import ImgLogo from "../../assets/images/img-logo-hijau.png";
 
-function Navbar() {
+function NavbarForm() {
   const [modalLogin, setmodalLogin] = useState(false);
   const navigate = useNavigate();
   function handleClick(route) {
     if (route === "/") {
       navigate("/");
     } else if (route === "MajorPage") {
-      navigate("bidangKeahlian");
+      navigate("/");
     } else {
     }
   }
@@ -19,7 +18,7 @@ function Navbar() {
   const location = useLocation();
   const hash = location.hash;
   return (
-    <nav className="navbar navbar-expand-lg ">
+    <nav className="navbar navbar-major navbar-expand-lg ">
       <div className="container-fluid fixed">
         <img src={ImgLogo} style={{}} />
         <button
@@ -35,32 +34,23 @@ function Navbar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul
-            id="navbar"
-            className="menu-items-desktop-v2 navbar-nav me-auto mb-2 mb-lg-0 "
+            id="navbar-major"
+            className="menu-items-desktop-v2 list-menu navbar-nav me-auto mb-2 mb-lg-0 "
           >
             <li>
               <a
-                className="active"
+                className="home"
                 // aria-current="page"
                 onClick={() => handleClick("/")}
               >
                 Home
               </a>
             </li>
-            <li>
-              <a onClick={() => handleClick("MajorPage")}>Bidang Keahlian</a>
-            </li>
-            <li>
-              <a href="#alur-daftar">Alur Pendaftaran</a>
-            </li>
-            <li>
-              <a onClick={() => setmodalLogin(true)}>Pendaftaran</a>
-            </li>
           </ul>
-          {modalLogin && <Login title={"Sebelum lanjut, login dulu yuk !"} />}
         </div>
       </div>
     </nav>
   );
 }
-export default Navbar;
+
+export default NavbarForm;

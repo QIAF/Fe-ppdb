@@ -278,15 +278,36 @@ export const validateForm = (formData, setError) => {
 // }
 // console.log (validatePdf)
 
-export const validateRegister = (formRegistration , setError) => {
+export const validateRegister = (form , setError) => {
     let valid = true;
 
-      if (!formRegistration.full_name){
+    const newErrors = {
+        full_name:'',
+        age: '',
+        email: '',
+        password: '',
+        confirmPassword:''
+
+    }
+
+      if (!form.full_name){
         newErrors.full_name = 'wajib diisi'
         valid=false;
     }
-    if (!formRegistration.age){
+    if (!form.age){
         newErrors.age = 'wajib diisi'
+        valid=false;
+    }
+    if (!form.email){
+        newErrors.email = 'wajib diisi'
+        valid=false;
+    }
+    if (!form.password){
+        newErrors.password = 'wajib diisi'
+        valid=false;
+    }
+    if (!form.confirm_password){
+        newErrors.confirm_password = 'wajib diisi'
         valid=false;
     }
     setError(newErrors);
@@ -300,18 +321,18 @@ export const validateLogin = (form , setError) => {
         email: '',
         password: '',
     }
-
     if (!form.email){
-        newErrors.email = 'wajib diisi'
+        newErrors.email = 'Email wajib diisi'
         valid=false;
     }
     if (!form.password){
-        newErrors.password = 'wajib diisi'
+        newErrors.password = 'Password wajib diisi'
         valid=false;
     }
     setError(newErrors);
     return valid;
 };
+
 export const dataStudent = (formData) => {
   const formStudent = {
     student_name: formData.student_name,
@@ -376,14 +397,15 @@ export const dataStudent = (formData) => {
   };
   console.log(formStudent)
 
-
   return formStudent;
 };
-
- export const dataRegister = (formRegistration) => {
+ export const dataRegister = (form) => {
     const formRegister = {
-        full_name: formRegistration.full_name,
-        age: formRegistration.age,
+        full_name: form.full_name,
+        age: form.age,
+        email: form.email,
+        password: form.password,
+        confirm_password: form.confirm_password
     }
     return formRegister;
 }

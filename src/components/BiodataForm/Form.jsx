@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import StudentData from "./StudentData";
 import StudentParentData from "./StudentParentData";
 import StudentGuardianData from "./StudentGuardianData";
@@ -21,74 +21,100 @@ function Form() {
   const [page, setPage] = useState(0);
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    student_name: "",
-    student_gender: "",
-    place_birth: "",
-    date_birth: "",
-    student_address: "",
-    student_distance: "",
-    student_religion: "",
-    student_blood_type: "",
-    student_weight: "",
-    student_height: "",
-    student_child: "",
-    student_kps: "",
-    student_hobby: "",
-
-    father_name: "",
-    father_job: "",
-    place_birth_father: "",
-    father_birth: "",
-    mother_name: "",
-    mother_job: "",
-    place_birth_mother: "",
-    mother_birth: "",
-    phoneNumber_house: "",
-
-    guardian_name: "",
-    guardian_address: "",
-    guardian_phone: "",
-    guardian_job: "",
-
-    school_name: "",
-    school_address: "",
-    ijazah_number: "",
-    nisn: "",
-
-    mathematics1: "",
-    mathematics2: "",
-    mathematics3: "",
-    mathematics4: "",
-    mathematics5: "",
-
-    science1: "",
-    science2: "",
-    science3: "",
-    science4: "",
-    science5: "",
-
-    indonesian1: "",
-    indonesian2: "",
-    indonesian3: "",
-    indonesian4: "",
-    indonesian5: "",
-
-    english1: "",
-    english2: "",
-    english3: "",
-    english4: "",
-    english5: "",
-
-    studentDocument: "",
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    const token = localStorage.getItem("token");
+    return !!token;
   });
+
+  const [formData, setFormData] = useState(() => {
+    const savedData = localStorage.getItem("formData");
+    return savedData
+      ? JSON.parse(savedData)
+      : {
+          student_name: "",
+          student_gender: "",
+          place_birth: "",
+          date_birth: "",
+          student_address: "",
+          student_distance: "",
+          student_religion: "",
+          student_blood_type: "",
+          student_weight: "",
+          student_height: "",
+          student_child: "",
+          student_kps: "",
+          student_hobby: "",
+
+          father_name: "",
+          father_job: "",
+          place_birth_father: "",
+          father_birth: "",
+          mother_name: "",
+          mother_job: "",
+          place_birth_mother: "",
+          mother_birth: "",
+          phoneNumber_house: "",
+
+          guardian_name: "",
+          guardian_address: "",
+          guardian_phone: "",
+          guardian_job: "",
+
+          school_name: "",
+          school_address: "",
+          ijazah_number: "",
+          nisn: "",
+
+          mathematics1: "",
+          mathematics2: "",
+          mathematics3: "",
+          mathematics4: "",
+          mathematics5: "",
+
+          science1: "",
+          science2: "",
+          science3: "",
+          science4: "",
+          science5: "",
+
+          indonesian1: "",
+          indonesian2: "",
+          indonesian3: "",
+          indonesian4: "",
+          indonesian5: "",
+
+          english1: "",
+          english2: "",
+          english3: "",
+          english4: "",
+          english5: "",
+
+          studentDocument: "",
+        };
+  });
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("Silakan login terlebih dahulu");
+      navigate("/");
+    }
+  }, [navigate]);
+
+  useEffect(() => {
+    // Simpan formData ke localStorage setiap kali formData berubah
+    if (isLoggedIn) {
+      localStorage.setItem("formData", JSON.stringify(formData));
+    }
+  }, [formData, isLoggedIn]);
+
   const handleInput = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
     });
-    validateForm(formData, setError);
+    validateLogin(formData, setError);
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -122,15 +148,14 @@ function Form() {
           formDataToSend,
           config
         );
-		console.log("Response status:", res.status);
-      	console.log("Response data:", res.data);
-        if (res?.status === 201 || res?.status === 200){
-			navigate("/detailData", {state: {data: formData}});   //navigasi (perpindahan halaman) ke bagian detail data dengan mengirimkan data yang telah di simpan dalam state variable formData
-			fetchData();
-			toast.success("Berhasil menambahkan data", { delay: 800 });
-        } else {
-          	toast.error("Terjadi kesalahan saat menambahkan data", {
-            delay: 800});
+        console.log("Response status:", res.status);
+        console.log("Response data:", res.data);
+        if (res.status === 200) {
+          toast.success("Berhasil menambahkan data", { delay: 800 });
+          navigate("/detailData", { state: { data: formData } }); //navigasi (perpindahan halaman) ke bagian detail data dengan mengirimkan data yang telah di simpan dalam state variable formData
+          fetchData();
+          // Hapus data dari localStorage setelah sukses
+          localStorage.removeItem("formData");
         }
       } catch (error) {
         toast.error("Gagal menambahkan data", { delay: 800 });
@@ -148,67 +173,65 @@ function Form() {
     "StudentScoreReport",
     "StudentFileData",
   ];
-
   const PageDisplay = () => {
-    if (page === 0) {
-      return (
-        <StudentData
-          formData={formData}
-          setFormData={setFormData}
-          handleInput={handleInput}
-          error={error}
-          handleChange={handleChange}
-        />
-      );
-    } else if (page === 1) {
-      return (
-        <StudentParentData
-          formData={formData}
-          setFormData={setFormData}
-          handleInput={handleInput}
-          error={error}
-        />
-      );
-    } else if (page === 2) {
-      return (
-        <StudentGuardianData
-          formData={formData}
-          setFormData={setFormData}
-          handleInput={handleInput}
-        />
-      );
-    } else if (page === 3) {
-      return (
-        <StudentSchool
-          formData={formData}
-          setFormData={setFormData}
-          handleInput={handleInput}
-          error={error}
-        />
-      );
-    } else if (page === 4) {
-      return (
-        <StudentScoreReport
-          formData={formData}
-          setFormData={setFormData}
-          handleInput={handleInput}
-          error={error}
-        />
-      );
-    } else {
-      return (
-        <StudentFileData
-          formData={formData}
-          setFormData={setFormData}
-          error={error}
-        />
-      );
+    switch (page) {
+      case 0:
+        return (
+          <StudentData
+            formData={formData}
+            setFormData={setFormData}
+            handleInput={handleInput}
+            error={error}
+            handleChange={handleChange}
+          />
+        );
+      case 1:
+        return (
+          <StudentParentData
+            formData={formData}
+            setFormData={setFormData}
+            handleInput={handleInput}
+            error={error}
+          />
+        );
+      case 2:
+        return (
+          <StudentGuardianData
+            formData={formData}
+            setFormData={setFormData}
+            handleInput={handleInput}
+          />
+        );
+      case 3:
+        return (
+          <StudentSchool
+            formData={formData}
+            setFormData={setFormData}
+            handleInput={handleInput}
+            error={error}
+          />
+        );
+      case 4:
+        return (
+          <StudentScoreReport
+            formData={formData}
+            setFormData={setFormData}
+            handleInput={handleInput}
+            error={error}
+          />
+        );
+      default:
+        return (
+          <StudentFileData
+            formData={formData}
+            setFormData={setFormData}
+            error={error}
+          />
+        );
     }
   };
-
   return (
     <>
-      <NavbarMajor />
       <div
         className="biodata container"
         style={{

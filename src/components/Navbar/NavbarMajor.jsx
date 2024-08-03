@@ -1,56 +1,65 @@
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import ImgLogo from "../../assets/images/img-logo-hijau.png";
+import { useState } from "react";
+import "./Navbar.css";
+import { Login } from "../../pages/Login/Login";
 
 function NavbarMajor() {
+  const [modalLogin, setmodalLogin] = useState(false);
   const navigate = useNavigate();
-  const handleClick = (e) => {
-    e.preventDefault();
-    navigate("/landingPage");
-  };
+  function handleClick(route) {
+    if (route === "/") {
+      navigate("/");
+    } else if (route === "MajorPage") {
+      navigate("/");
+    } else {
+    }
+  }
+  const location = useLocation();
+  const hash = location.hash;
 
   return (
-    <nav className="navbar navbar-major navbar-expand-lg fixed-top">
-      <div className="container-fluid">
-        <a className="navbar-brand" href="#"></a>
+    <nav className="navbar navbar-major navbar-expand-lg ">
+      <div className="container-fluid fixed">
+        <img src={ImgLogo} style={{}} />
         <button
           className="navbar-toggler"
           type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <div>
-            <img src={ImgLogo} alt="" />
-          </div>
-          <ul className="menu-items-desktop-v2 navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
+          <ul
+            id="navbar-major"
+            className="menu-items-desktop-v2 list-menu navbar-nav me-auto mb-2 mb-lg-0 "
+          >
+            <li>
               <a
-                className="title-navbar menu-home-desktop-v2 active"
-                aria-current="page"
-                onClick={(e) => handleClick(e)}
+                className="home"
+                // aria-current="page"
+                onClick={() => handleClick("/")}
               >
                 Home
               </a>
             </li>
-            <li className="nav-item">
+            <li>
               <a
-                className="title-navbar menu-bidang-keahlian-desktop-v2"
-                href="#"
+                className="major-page active"
+                onClick={() => handleClick("MajorPage")}
               >
                 Bidang Keahlian
               </a>
             </li>
-            <li className="nav-item">
-              <a
-                href="#"
-                className="title-navbar menu-pendaftaran-v2 w-button"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-              >
-                Pendaftaran
-              </a>
+            <li>
+              <a onClick={() => setmodalLogin(true)}>Pendaftaran</a>
             </li>
           </ul>
+          {modalLogin && <Login title={"Sebelum lanjut, login dulu yuk !"} />}
         </div>
       </div>
     </nav>

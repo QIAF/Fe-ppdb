@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavbarMajor from "../Navbar/NavbarMajor";
 import { useLocation, useNavigate } from "react-router";
 import Box from "../Ui/Box/Box";
+import { toast } from "react-toastify";
 
 function StudentDetail() {
   const navigate = useNavigate();
   const location = useLocation();
   console.log("Location state:", location.state);
-  const data = location.state?.data;
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("Silakan login terlebih dahulu");
+      navigate("/");
+  }
+  }, [navigate])
+
+  // Ambil data dari location.state atau localStorage
+  const data =
+    location.state?.data || JSON.parse(localStorage.getItem("formData"));
   // data akan di set ke "data?" di table
   //  tanda "?" buat ngakses data dan ngecek  apakah data undefined atau null
 
@@ -75,8 +87,7 @@ function StudentDetail() {
           </table>
         </div>
       </Box>
-      <Box
-      title={"Data Orangtua Siswa"}>
+      <Box title={"Data Orangtua Siswa"}>
         <div className="table-wrapper">
           <table className="table table-borderless table-striped">
             <tbody>
@@ -146,7 +157,10 @@ function StudentDetail() {
       </Box>
       <Box title={"Data Nilai Siswa"}>
         <div className="table-wrapper ">
-          <table style={{ width: "100%" }} className="table table-borderless table-striped">
+          <table
+            style={{ width: "100%" }}
+            className="table table-borderless table-striped"
+          >
             <tbody className="m-auto">
               <tr>
                 <td>Matematika</td>
