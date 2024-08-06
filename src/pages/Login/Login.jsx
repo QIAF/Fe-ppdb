@@ -32,6 +32,7 @@ export const Login = ({ title, props }) => {
       ...form,
       [name]: value,
     });
+    validateLogin(form, setError);
   };
   const handlePostForm = async (data) => {
     const formLogin = loginData(data); // Memproses data login

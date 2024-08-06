@@ -4,8 +4,8 @@ import StudentParentData from "./StudentParentData";
 import StudentGuardianData from "./StudentGuardianData";
 import StudentSchool from "./StudentSchool";
 import StudentScoreReport from "./StudentScoreReport";
-import NavbarMajor from "../Navbar/NavbarMajor";
 import StudentFileData from "./StudentFileData";
+
 import {
   dataStudent,
   validateForm,
@@ -143,6 +143,18 @@ function Form() {
       };
 
       try {
+        // const checkRes = await axios.get(
+        //   "http://localhost:3000/api/v1/studentData/:id",
+        //   config
+        // );
+        // if (checkRes.data.exists) {
+        //   toast.error(
+        //     "Data sudah ada. Anda hanya dapat mengirimkan data sekali.",
+        //     { delay: 800 }
+        //   );
+        //   return;
+        // }
+
         const res = await axios.post(
           "http://localhost:3000/api/v1/studentData/create",
           formDataToSend,
@@ -152,7 +164,8 @@ function Form() {
         console.log("Response data:", res.data);
         if (res.status === 200) {
           toast.success("Berhasil menambahkan data", { delay: 800 });
-          navigate("/detailData", { state: { data: formData } }); //navigasi (perpindahan halaman) ke bagian detail data dengan mengirimkan data yang telah di simpan dalam state variable formData
+          // navigate("/detailData", { state: { data: formData } }); //navigasi (perpindahan halaman) ke bagian detail data dengan mengirimkan data yang telah di simpan dalam state variable formData
+          navigate("/detailData/${data.id}");
           fetchData();
           // Hapus data dari localStorage setelah sukses
           localStorage.removeItem("formData");

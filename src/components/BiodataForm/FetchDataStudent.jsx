@@ -1,31 +1,12 @@
-import React, { useEffect, useState } from "react";
-import NavbarMajor from "../Navbar/NavbarMajor";
-import { useLocation, useNavigate, useParams } from "react-router";
-import Box from "../Ui/Box/Box";
-import { toast } from "react-toastify";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import NavbarMajor from "../Navbar/NavbarMajor";
+import Box from "../Ui/Box/Box";
 
-function StudentDetail() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  console.log("Location state:", location.state);
-
+function FetchDataStudent() {
   const [data, setData] = useState(null);
   const { id } = useParams();
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (!token) {
-  //     toast.error("Silakan login terlebih dahulu");
-  //     navigate("/");
-  // }
-  // }, [navigate])
-
-  // Ambil data dari location.state atau localStorage
-  // const data =
-  //   location.state?.data || JSON.parse(localStorage.getItem("formData"));
-  // data akan di set ke "data?" di table
-  //  tanda "?" buat ngakses data dan ngecek  apakah data undefined atau null
 
   const fetchData = async () => {
     const token = localStorage.getItem("token");
@@ -42,11 +23,10 @@ function StudentDetail() {
         config
       );
 
-      console.log("api respon:", res.data);
-      setData(res.data);
+      console.log("API response:", res.data);
+      setData(res.data.data);
     } catch (error) {
       console.error("Terjadi kesalahan:", error);
-      toast.error("Gagal mengambil data", { delay: 800 });
     }
   };
 
@@ -54,9 +34,12 @@ function StudentDetail() {
     fetchData();
   }, [id]);
 
-  console.log(data);
+  console.log("Fetched data:", data);
+
   return (
-    <>
+    <div>
+      <button onClick={fetchData}>Get Data</button>
+
       <NavbarMajor />
       <Box title={"Data Siswa"}>
         <hr />
@@ -65,55 +48,55 @@ function StudentDetail() {
             <tbody>
               <tr>
                 <td>Nama Lengkap</td>
-                <td>{data?.student_name}</td>
+                <td>{data?.findData?.student_name}</td>
               </tr>
               <tr>
                 <td>Jenis Kelamin</td>
-                <td>{data?.student_gender}</td>
+                <td>{data?.findData?.student_gender}</td>
               </tr>
               <tr>
                 <td>Tempat Lahir</td>
-                <td>{data?.place_birth}</td>
+                <td>{data?.findData?.place_birth}</td>
               </tr>
               <tr>
                 <td>Tanggal Lahir</td>
-                <td>{data?.date_birth}</td>
+                <td>{data?.findData?.date_birth}</td>
               </tr>
               <tr>
                 <td>Alamat Asal</td>
-                <td>{data?.student_address}</td>
+                <td>{data?.findData?.student_address}</td>
               </tr>
               <tr>
                 <td>Jarak Rumah ke Sekolah</td>
-                <td>{data?.student_distance}</td>
+                <td>{data?.findData?.student_distance}</td>
               </tr>
               <tr>
                 <td>Agama</td>
-                <td>{data?.student_religion}</td>
+                <td>{data?.findData?.student_religion}</td>
               </tr>
               <tr>
                 <td>Golongan Darah</td>
-                <td>{data?.student_blood_type}</td>
+                <td>{data?.findData?.student_blood_type}</td>
               </tr>
               <tr>
                 <td>Tinggi Badan</td>
-                <td>{data?.student_weight}</td>
+                <td>{data?.findData?.student_weight}</td>
               </tr>
               <tr>
                 <td>Berat Badan</td>
-                <td>{data?.student_height}</td>
+                <td>{data?.findData?.student_height}</td>
               </tr>
               <tr>
                 <td>Anak Ke -</td>
-                <td>{data?.student_child}</td>
+                <td>{data?.findData?.student_child}</td>
               </tr>
               <tr>
                 <td>KPS</td>
-                <td>{data?.student_kps}</td>
+                <td>{data?.findData?.student_kps}</td>
               </tr>
               <tr>
                 <td>Hobi</td>
-                <td>{data?.student_hobby}</td>
+                <td>{data?.findData?.student_hobby}</td>
               </tr>
             </tbody>
           </table>
@@ -124,40 +107,40 @@ function StudentDetail() {
           <table className="table table-borderless table-striped">
             <tbody>
               <tr>
-                <td>Nama ayah</td>
-                <td>{data?.father_name}</td>
+                <td>Nama Ayah</td>
+                <td>{data?.findData?.father_name}</td>
               </tr>
               <tr>
                 <td>Tempat Lahir</td>
-                <td>{data?.place_birth_father}</td>
+                <td>{data?.findData?.place_birth_father}</td>
               </tr>
               <tr>
                 <td>Tanggal Lahir Ayah</td>
-                <td>{data?.father_birth}</td>
+                <td>{data?.findData?.father_birth}</td>
               </tr>
               <tr>
                 <td>Nama Ibu</td>
-                <td>{data?.mother_name}</td>
+                <td>{data?.findData?.mother_name}</td>
               </tr>
               <tr>
                 <td>Tempat Lahir Ibu</td>
-                <td>{data?.place_birth_mother}</td>
+                <td>{data?.findData?.place_birth_mother}</td>
               </tr>
               <tr>
                 <td>Tanggal Lahir Ibu</td>
-                <td>{data?.mother_birth}</td>
+                <td>{data?.findData?.mother_birth}</td>
               </tr>
               <tr>
                 <td>Nomor Telepon Rumah</td>
-                <td>{data?.student_blood_type}</td>
+                <td>{data?.findData?.home_phone}</td>
               </tr>
               <tr>
                 <td>Pekerjaan Ayah</td>
-                <td>{data?.father_job}</td>
+                <td>{data?.findData?.father_job}</td>
               </tr>
               <tr>
                 <td>Pekerjaan Ibu</td>
-                <td>{data?.mother_job}</td>
+                <td>{data?.findData?.mother_job}</td>
               </tr>
             </tbody>
           </table>
@@ -169,19 +152,19 @@ function StudentDetail() {
             <tbody>
               <tr>
                 <td>Nama Wali</td>
-                <td>{data?.guardian_name}</td>
+                <td>{data?.findData?.guardian_name}</td>
               </tr>
               <tr>
                 <td>Alamat Wali</td>
-                <td>{data?.guardian_address}</td>
+                <td>{data?.findData?.guardian_address}</td>
               </tr>
               <tr>
                 <td>Nomor Telepon Wali</td>
-                <td>{data?.guardian_phone}</td>
+                <td>{data?.findData?.guardian_phone}</td>
               </tr>
               <tr>
                 <td>Pekerjaan Wali</td>
-                <td>{data?.guardian_Job}</td>
+                <td>{data?.findData?.guardian_job}</td>
               </tr>
             </tbody>
           </table>
@@ -196,42 +179,42 @@ function StudentDetail() {
             <tbody className="m-auto">
               <tr>
                 <td>Matematika</td>
-                <td>{data?.mathematics1}</td>
-                <td>{data?.mathematics2}</td>
-                <td>{data?.mathematics3}</td>
-                <td>{data?.mathematics4}</td>
-                <td>{data?.mathematics5}</td>
+                <td>{data?.findReportScore?.mathematics1}</td>
+                <td>{data?.findReportScore?.mathematics2}</td>
+                <td>{data?.findReportScore?.mathematics3}</td>
+                <td>{data?.findReportScore?.mathematics4}</td>
+                <td>{data?.findReportScore?.mathematics5}</td>
               </tr>
               <tr>
                 <td>IPA</td>
-                <td>{data?.science1}</td>
-                <td>{data?.science2}</td>
-                <td>{data?.science3}</td>
-                <td>{data?.science4}</td>
-                <td>{data?.science5}</td>
+                <td>{data?.findReportScore?.science1}</td>
+                <td>{data?.findReportScore?.science2}</td>
+                <td>{data?.findReportScore?.science3}</td>
+                <td>{data?.findReportScore?.science4}</td>
+                <td>{data?.findReportScore?.science5}</td>
               </tr>
               <tr>
                 <td>Bahasa Indonesia</td>
-                <td>{data?.indonesian1}</td>
-                <td>{data?.indonesian2}</td>
-                <td>{data?.indonesian3}</td>
-                <td>{data?.indonesian4}</td>
-                <td>{data?.indonesian5}</td>
+                <td>{data?.findReportScore?.indonesian1}</td>
+                <td>{data?.findReportScore?.indonesian2}</td>
+                <td>{data?.findReportScore?.indonesian3}</td>
+                <td>{data?.findReportScore?.indonesian4}</td>
+                <td>{data?.findReportScore?.indonesian5}</td>
               </tr>
               <tr>
                 <td>Bahasa Inggris</td>
-                <td>{data?.english1}</td>
-                <td>{data?.english2}</td>
-                <td>{data?.english3}</td>
-                <td>{data?.english4}</td>
-                <td>{data?.english5}</td>
+                <td>{data?.findReportScore?.english1}</td>
+                <td>{data?.findReportScore?.english2}</td>
+                <td>{data?.findReportScore?.english3}</td>
+                <td>{data?.findReportScore?.english4}</td>
+                <td>{data?.findReportScore?.english5}</td>
               </tr>
             </tbody>
           </table>
         </div>
       </Box>
-    </>
+    </div>
   );
 }
 
-export default StudentDetail;
+export default FetchDataStudent;

@@ -99,7 +99,7 @@ function Register() {
                     value={form.full_name}
                     onChange={handleInput}
                   />
-                  <ErrMsg msg={error.email} />
+                  <ErrMsg msg={error.full_name} />
                 </div>
                 <div className="mb-3">
                   <Input
