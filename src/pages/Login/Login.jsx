@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import ImgGoogle from "../../../src/assets/images/img-icon-google.png";
 import { ErrMsg } from "../../components/Error/ErrMsg";
 import { loginData, validateLogin } from "../../Utils/validation";
-import { SignUp } from "./SignUp";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import axios from "axios";
-import Cookies from "js-cookie";
+import Register from "./Register";
 
 export const Login = ({ title, props }) => {
+  const { id } = useParams();
+
   const [modalRegister, setModalRegister] = useState(false);
   const [error, setError] = useState({});
   const [modalLoginOpen, setModalLoginOpen] = useState(true);
@@ -22,8 +22,8 @@ export const Login = ({ title, props }) => {
   };
 
   const handleLoginModal = () => {
-    setModalLoginOpen(true);
     setModalRegister(false);
+    setModalLoginOpen(true);
   };
 
   const [form, setForm] = useState({
@@ -37,28 +37,104 @@ export const Login = ({ title, props }) => {
       ...form,
       [name]: value,
     });
+    validateLogin(form, setError);
   };
 
   const handlePostForm = async (data) => {
     const formLogin = loginData(data);
 
-    if (validateLogin(form, setError)) {
-      try {
-        const res = await axios.post(
-          "http://localhost:3000/api/v1/auth/login",
-          formLogin
-        );
-        console.log("respone :", res);
-        if (res.status === 200) {
-            const {token} = res.data.results;
-            Cookies.set('token', token);
-            navigate("/formData"); //buat ke hal form
-          toast.success("Berhasil melakukan login", { delay: 800 });
-        } else {
-          toast.error("Terjadi kesalahan saat login", { delay: 800 });
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/api/v1/auth/login",
+        formLogin,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      } catch (error) {
-        toast.error("Gagal Login", { delay: 800 });
+      );
+      if (res.status === 200) {
+        const { token } = res.data;
+
+        if (token) {
+          localStorage.setItem("token", token); // Simpan token ke localStorage
+          console.log("Token berhasil disimpan:", token);
+
+          const config = {
+            headers: {
+              Authorization: `Bearer ${token}`, // Sertakan token dalam header Authorization
+            },
+          };
+          try {
+            // Mengambil data siswa dari server
+            const resStudent = await axios.get(
+              `http://localhost:3000/api/v1/studentData/${id}`,
+              config
+            );
+
+            console.log("APAAA DATANYA:", resStudent.data);
+
+            // Memeriksa apakah data siswa ada
+            const studentData = resStudent.data;
+
+            if (studentData && studentData.data) {
+              navigate("getData");
+              toast.success("Berhasil melakukan login, anda telah mendaftar", {
+                delay: 800,
+              });
+            }
+          } catch (error) {
+            console.error(
+              "Gagal mendapatkan user data, masukkan data terlebih dahulu",
+              error
+            );
+            navigate("formData");
+            toast.success("Berhasil melakukan login", {
+              delay: 800,
+            });
+          }
+
+          // try {
+          //   // Melakukan request GET untuk mendapatkan user data
+          //   const resUser = await axios.get(
+          //     `http://localhost:3000/api/v1/auth/me/${id}`,
+          //     config
+          //   );
+          //   console.log("user manaa", resUser);
+          //   const user_id = resUser.data.data.id;
+          //   console.log("User ID:", user_id);
+
+          //   // Simpan user_id ke localStorage
+          //   localStorage.setItem("user_id", user_id);
+
+          //   // Redirect ke halaman berikutnya
+          //   navigate("/formData");
+          // } catch (error) {
+          //   console.error("Gagal mendapatkan user data:", error);
+          //   toast.error("Gagal mendapatkan data pengguna.", {
+          //     delay: 800,
+          //   });
+          // }
+        } else {
+          console.error("Token tidak ditemukan dalam respons");
+          toast.error("Token tidak ditemukan dalam respons.", { delay: 800 });
+        }
+      } else {
+        console.error("Status respons tidak 200:", res.status);
+        toast.error("Terjadi kesalahan saat login", { delay: 800 });
+      }
+    } catch (error) {
+      if (error.response) {
+        console.error("Error response:", error.response);
+        toast.error("Email atau password tidak valid", { delay: 800 });
+      } else if (error.request) {
+        console.error("No response received:", error.request);
+        toast.error("Tidak ada respons dari server. Silakan coba lagi nanti.", {
+          delay: 800,
+        });
+      } else {
+        console.error("Error occurred:", error.message);
+        toast.error("Terjadi kesalahan. Silakan coba lagi.", { delay: 800 });
       }
     }
   };
@@ -74,11 +150,12 @@ export const Login = ({ title, props }) => {
     <>
       {modalLoginOpen && (
         <div
-          className="modal fade"
+          className="modal fade show"
           id="exampleModal"
           tabIndex="-1"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
+          style={{ display: "block", backgroundColor: "rgba(0,0,0,0.5)" }}
         >
           <div className="modal-dialog">
             <div className="modal-content">
@@ -146,9 +223,13 @@ export const Login = ({ title, props }) => {
                 atau
               </p>
               <div className="d-flex justify-content-center mx-auto mb-3">
-                <button type="button" className="btn btn-outline-dark btn-sm ">
-                  <img className="img-google" src={ImgGoogle} alt="" /> &nbsp;
-                  Masuk dengan google
+                <button type="button" className="btn btn-outline-dark btn-sm">
+                  <img
+                    className="img-google"
+                    src={ImgGoogle}
+                    alt="Google Icon"
+                  />
+                  &nbsp; Masuk dengan google
                 </button>
               </div>
             </div>
@@ -156,7 +237,7 @@ export const Login = ({ title, props }) => {
         </div>
       )}
       {modalRegister && (
-        <SignUp title={"Silahkan Mendaftar !"} onClose={handleLoginModal} />
+        <Register title={"Silahkan Mendaftar !"} onClose={handleLoginModal} />
       )}
     </>
   );

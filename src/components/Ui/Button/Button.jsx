@@ -1,13 +1,10 @@
-const Button = (props) => {
-  const { type, className, name, placeholder, value, onChange, defaultChecked, maxLength,onClick } = props;
-
+export const Button = (type, className, name, onClick) => {
   return (
     <Button
       className={className}
       name={name}
       onClick={onClick}
+      type = { type }
     />
   );
 };
-
-export default Button;

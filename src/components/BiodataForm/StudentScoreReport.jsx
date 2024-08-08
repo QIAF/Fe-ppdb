@@ -27,7 +27,6 @@ function StudentScoreReport({ handleInput, formData, error}) {
                         className={"form-control"}
                         placeholder={"sem 1"}
                         value={formData.mathematics1}
-  
                         onChange={handleInput
                         }
                       />
@@ -41,7 +40,6 @@ function StudentScoreReport({ handleInput, formData, error}) {
                         className={"form-control"}
                         placeholder={"sem 2"}
                         value={formData.mathematics2}
-  
                         onChange={handleInput
                         }
                       />
@@ -55,7 +53,6 @@ function StudentScoreReport({ handleInput, formData, error}) {
                         className={"form-control"}
                         placeholder={"sem 3"}
                         value={formData.mathematics3}
-  
                         onChange={handleInput
                         }
                       />
@@ -240,7 +237,6 @@ function StudentScoreReport({ handleInput, formData, error}) {
                         name ="english2"
                         className={"form-control"}
                         value={formData.english2}
-  
                         onChange={handleInput
                         }
                       />
@@ -252,7 +248,6 @@ function StudentScoreReport({ handleInput, formData, error}) {
                         name ="english3"
                         className={"form-control"}
                         value={formData.english3}
-  
                         onChange={handleInput
                         }
                       />
@@ -264,7 +259,6 @@ function StudentScoreReport({ handleInput, formData, error}) {
                         name ="english4"
                         className={"form-control"}
                         value={formData.english4}
-  
                         onChange={handleInput
                         }
                       />
@@ -276,7 +270,6 @@ function StudentScoreReport({ handleInput, formData, error}) {
                         name ="english5"
                         className={"form-control"}
                         value={formData.english5}
-  
                         onChange={handleInput
                         }
                       />

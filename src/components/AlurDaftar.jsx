@@ -2,7 +2,7 @@ import ImgStudy from "../assets/images/img-study.png";
 import ImgAlur from "../assets/images/img-alur-daftar.png";
 function AlurDaftar() {
   return (
-    <div section id="alur-daftar">
+    <div id="alur-daftar">
       <div className="alur-daftar-siswa">
         <div className="title-alur container">
           <h3>

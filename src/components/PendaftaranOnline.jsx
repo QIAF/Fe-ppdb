@@ -19,9 +19,7 @@ function PendaftaranOnline() {
             <div className="d-grid gap-2 d-md-flex justify-content-md-start">
               <button type="button"
               className="btn-daftar btn-lg px-4 me-md-2"
-              onClick={() => setmodalLogin(true)}
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal">
+              onClick={() => setmodalLogin(true)}>
                 Daftar sekarang
               </button>
               {modalLogin && (

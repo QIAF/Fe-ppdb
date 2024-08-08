@@ -2,6 +2,7 @@ import ImgSiswa from "../assets/images/img-siswa.png";
 import { useNavigate } from "react-router-dom";
 import Modal from "./Ui/Modal/Modal";
 import { useState } from "react";
+import { Login } from "../pages/Login/Login";
 
 function Heroes() {
   const [modalLogin, setmodalLogin] = useState(false);
@@ -37,13 +38,11 @@ function Heroes() {
                 <button
                   onClick={() => setmodalLogin(true)}
                   className="btn-daftar"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
                 >
                   Daftar Sekarang
                 </button>
                 {modalLogin && (
-                  <Modal title={"Sebelum lanjut, login dulu yuk !"} />
+                  <Login title={"Sebelum lanjut, login dulu yuk !"} />
                 )}
               </div>
             </div>

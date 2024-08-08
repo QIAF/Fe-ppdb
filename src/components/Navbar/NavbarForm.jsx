@@ -1,18 +1,17 @@
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
-import ImgLogo from "../../assets/images/img-logo-hijau.png";
-import { useState } from "react";
 import "./Navbar.css";
-import { Login } from "../../pages/Login/Login";
+import ImgLogo from "../../assets/images/img-logo-hijau.png";
 
-function NavbarMajor() {
+function NavbarForm() {
   const [modalLogin, setmodalLogin] = useState(false);
   const navigate = useNavigate();
   function handleClick(route) {
     navigate(route);
   }
+
   const location = useLocation();
   const hash = location.hash;
-
   return (
     <nav className="navbar navbar-major navbar-expand-lg ">
       <div className="container-fluid fixed">
@@ -42,22 +41,11 @@ function NavbarMajor() {
                 Home
               </a>
             </li>
-            <li>
-              <a
-                className="major-page active"
-                onClick={() => handleClick("")}
-              >
-                Bidang Keahlian
-              </a>
-            </li>
-            <li>
-              <a onClick={() => setmodalLogin(true)}>Pendaftaran</a>
-            </li>
           </ul>
-          {modalLogin && <Login title={"Sebelum lanjut, login dulu yuk !"} />}
         </div>
       </div>
     </nav>
   );
 }
-export default NavbarMajor;
+
+export default NavbarForm;
