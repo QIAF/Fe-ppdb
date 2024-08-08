@@ -104,7 +104,7 @@ function Form() {
   useEffect(() => {
     // Simpan formData ke localStorage setiap kali formData berubah
     if (isLoggedIn) {
-      localStorage.setItem("formData", JSON.stringify(formData));
+      localStorage.setItem("getData", JSON.stringify(formData));
     }
   }, [formData, isLoggedIn]);
 
@@ -116,6 +116,7 @@ function Form() {
     });
     validateLogin(formData, setError);
   };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((preForm) => ({
@@ -130,7 +131,6 @@ function Form() {
     for (let key in dataToSend) {
       formDataToSend.append(key, dataToSend[key]); // Memasukkan setiap properti dari dataToSend ke formDataToSend
     }
-    console.log("ada ga datanya? ", formData);
 
     if (validateForm(formData, setError)) {
       const token = localStorage.getItem("token");
@@ -143,32 +143,19 @@ function Form() {
       };
 
       try {
-        // const checkRes = await axios.get(
-        //   "http://localhost:3000/api/v1/studentData/:id",
-        //   config
-        // );
-        // if (checkRes.data.exists) {
-        //   toast.error(
-        //     "Data sudah ada. Anda hanya dapat mengirimkan data sekali.",
-        //     { delay: 800 }
-        //   );
-        //   return;
-        // }
-
         const res = await axios.post(
           "http://localhost:3000/api/v1/studentData/create",
           formDataToSend,
           config
         );
+
         console.log("Response status:", res.status);
         console.log("Response data:", res.data);
+
         if (res.status === 200) {
           toast.success("Berhasil menambahkan data", { delay: 800 });
-          // navigate("/detailData", { state: { data: formData } }); //navigasi (perpindahan halaman) ke bagian detail data dengan mengirimkan data yang telah di simpan dalam state variable formData
-          navigate("/detailData/${data.id}");
-          fetchData();
-          // Hapus data dari localStorage setelah sukses
-          localStorage.removeItem("formData");
+          navigate("/getData"); // Pindah ke halaman getData setelah sukses
+          localStorage.removeItem("formData"); // Hapus data dari localStorage setelah sukses
         }
       } catch (error) {
         toast.error("Gagal menambahkan data", { delay: 800 });
@@ -186,6 +173,7 @@ function Form() {
     "StudentScoreReport",
     "StudentFileData",
   ];
+
   const PageDisplay = () => {
     switch (page) {
       case 0:
@@ -243,6 +231,7 @@ function Form() {
         );
     }
   };
+
   return (
     <>
       <div
@@ -261,10 +250,8 @@ function Form() {
                 <button
                   className="btn btn-primary me-md-2"
                   type="button"
-                  disabled={page == 0}
-                  onClick={() => {
-                    setPage((currPage) => currPage - 1);
-                  }}
+                  disabled={page === 0}
+                  onClick={() => setPage((currPage) => currPage - 1)}
                 >
                   Sebelumnya
                 </button>
@@ -272,7 +259,7 @@ function Form() {
                   className="btn btn-primary"
                   type="button"
                   onClick={() => {
-                    if (page == FormTitles.length - 1) {
+                    if (page === FormTitles.length - 1) {
                       handlePostForm(formData);
                     } else {
                       setPage((currPage) => currPage + 1);

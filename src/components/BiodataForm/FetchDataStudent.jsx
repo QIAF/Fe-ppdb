@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import NavbarMajor from "../Navbar/NavbarMajor";
+import { useLocation, useNavigate, useParams } from "react-router";
 import Box from "../Ui/Box/Box";
+import NavbarForm from "../Navbar/NavbarForm";
 
 function FetchDataStudent() {
   const [data, setData] = useState(null);
@@ -38,9 +38,7 @@ function FetchDataStudent() {
 
   return (
     <div>
-      <button onClick={fetchData}>Get Data</button>
-
-      <NavbarMajor />
+      <NavbarForm />
       <Box title={"Data Siswa"}>
         <hr />
         <div className="table-wrapper">
@@ -142,14 +140,6 @@ function FetchDataStudent() {
                 <td>Pekerjaan Ibu</td>
                 <td>{data?.findData?.mother_job}</td>
               </tr>
-            </tbody>
-          </table>
-        </div>
-      </Box>
-      <Box title={"Data Wali Siswa"}>
-        <div className="table-wrapper">
-          <table className="table table-borderless table-striped">
-            <tbody>
               <tr>
                 <td>Nama Wali</td>
                 <td>{data?.findData?.guardian_name}</td>

@@ -4,11 +4,13 @@ import ImgGoogle from "../../../src/assets/images/img-icon-google.png";
 import { ErrMsg } from "../../components/Error/ErrMsg";
 import { loginData, validateLogin } from "../../Utils/validation";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 import Register from "./Register";
 
 export const Login = ({ title, props }) => {
+  const { id } = useParams();
+
   const [modalRegister, setModalRegister] = useState(false);
   const [error, setError] = useState({});
   const [modalLoginOpen, setModalLoginOpen] = useState(true);
@@ -18,14 +20,17 @@ export const Login = ({ title, props }) => {
     setModalLoginOpen(false);
     setModalRegister(true);
   };
+
   const handleLoginModal = () => {
     setModalRegister(false);
     setModalLoginOpen(true);
   };
+
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
+
   const handleInput = (e) => {
     const { name, value } = e.target;
     setForm({
@@ -34,12 +39,11 @@ export const Login = ({ title, props }) => {
     });
     validateLogin(form, setError);
   };
+
   const handlePostForm = async (data) => {
-    const formLogin = loginData(data); // Memproses data login
-    console.log("Data login yang dikirim:", formLogin);
+    const formLogin = loginData(data);
 
     try {
-      // Mengirim permintaan POST untuk login
       const res = await axios.post(
         "http://localhost:3000/api/v1/auth/login",
         formLogin,
@@ -50,23 +54,69 @@ export const Login = ({ title, props }) => {
         }
       );
       if (res.status === 200) {
-        const token = res.data.token; // Mengambil token dari respons
+        const { token } = res.data;
 
         if (token) {
-          localStorage.setItem("token", token); // Menyimpan token ke localStorage
+          localStorage.setItem("token", token); // Simpan token ke localStorage
           console.log("Token berhasil disimpan:", token);
 
-          // Memverifikasi token dari localStorage
-          console.log(
-            "Token dari localStorage setelah login:",
-            localStorage.getItem("token")
-          );
-          toast.success("Berhasil melakukan login", { delay: 800 });
+          const config = {
+            headers: {
+              Authorization: `Bearer ${token}`, // Sertakan token dalam header Authorization
+            },
+          };
+          try {
+            // Mengambil data siswa dari server
+            const resStudent = await axios.get(
+              `http://localhost:3000/api/v1/studentData/${id}`,
+              config
+            );
 
-          // Mengarahkan pengguna ke halaman form data
-          navigate("/formData");
+            console.log("APAAA DATANYA:", resStudent.data);
+
+            // Memeriksa apakah data siswa ada
+            const studentData = resStudent.data;
+
+            if (studentData && studentData.data) {
+              navigate("getData");
+              toast.success("Berhasil melakukan login, anda telah mendaftar", {
+                delay: 800,
+              });
+            }
+          } catch (error) {
+            console.error(
+              "Gagal mendapatkan user data, masukkan data terlebih dahulu",
+              error
+            );
+            navigate("formData");
+            toast.success("Berhasil melakukan login", {
+              delay: 800,
+            });
+          }
+
+          // try {
+          //   // Melakukan request GET untuk mendapatkan user data
+          //   const resUser = await axios.get(
+          //     `http://localhost:3000/api/v1/auth/me/${id}`,
+          //     config
+          //   );
+          //   console.log("user manaa", resUser);
+          //   const user_id = resUser.data.data.id;
+          //   console.log("User ID:", user_id);
+
+          //   // Simpan user_id ke localStorage
+          //   localStorage.setItem("user_id", user_id);
+
+          //   // Redirect ke halaman berikutnya
+          //   navigate("/formData");
+          // } catch (error) {
+          //   console.error("Gagal mendapatkan user data:", error);
+          //   toast.error("Gagal mendapatkan data pengguna.", {
+          //     delay: 800,
+          //   });
+          // }
         } else {
-          console.error("Token tidak ditemukan dalam respons.");
+          console.error("Token tidak ditemukan dalam respons");
           toast.error("Token tidak ditemukan dalam respons.", { delay: 800 });
         }
       } else {
@@ -75,27 +125,20 @@ export const Login = ({ title, props }) => {
       }
     } catch (error) {
       if (error.response) {
-        // Server merespons dengan status selain dari rentang 200
         console.error("Error response:", error.response);
-        toast.error(
-          `Gagal Login: ${
-            error.response.data.message || "Email atau password tidak valid"
-          }`,
-          { delay: 800 }
-        );
+        toast.error("Email atau password tidak valid", { delay: 800 });
       } else if (error.request) {
-        // Tidak ada respons yang diterima dari server
         console.error("No response received:", error.request);
         toast.error("Tidak ada respons dari server. Silakan coba lagi nanti.", {
           delay: 800,
         });
       } else {
-        // Kesalahan lainnya
         console.error("Error occurred:", error.message);
         toast.error("Terjadi kesalahan. Silakan coba lagi.", { delay: 800 });
       }
     }
   };
+
   useEffect(() => {
     if (props && props.nextPage) {
       const timerId = setTimeout(() => navigate(props.nextPage), 300);
@@ -186,7 +229,6 @@ export const Login = ({ title, props }) => {
                     src={ImgGoogle}
                     alt="Google Icon"
                   />
-                  {""}
                   &nbsp; Masuk dengan google
                 </button>
               </div>

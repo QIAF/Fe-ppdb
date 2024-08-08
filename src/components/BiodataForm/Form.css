@@ -24,6 +24,15 @@ table thead {
     background: #b3f2ff;
 }
 
+.table-wrapper {
+    width: 100%;
+    /* Pastikan wrapper tabel mengambil 100% lebar container */
+    overflow-x: auto;
+    /* Tambahkan scroll horizontal jika tabel terlalu lebar */
+    margin: 0 auto;
+    /* Centering wrapper */
+}
+
 table th,
 table td {
     padding: 10px 20px;
@@ -62,3 +71,11 @@ table td {
     }
 
 }
+
+.table {
+    width: 100%;
+    /* Membuat tabel memenuhi lebar dari wrapper */
+    table-layout: fixed;
+    /* Mengontrol tata letak tabel agar lebih konsisten */
+}
+
