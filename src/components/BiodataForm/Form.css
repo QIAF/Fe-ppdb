@@ -10,72 +10,78 @@
     margin-top: 130px;
 }
 
-.box {
-    padding: 40px 5px;
-}
-
-table {
-    border-collapse: collapse;
-    display: inline-block;
-    text-align: left;
-}
-
-table thead {
-    background: #b3f2ff;
-}
-
-.table-wrapper {
-    width: 100%;
-    /* Pastikan wrapper tabel mengambil 100% lebar container */
-    overflow-x: auto;
-    /* Tambahkan scroll horizontal jika tabel terlalu lebar */
-    margin: 0 auto;
-    /* Centering wrapper */
-}
-
-table th,
-table td {
-    padding: 10px 20px;
-    border-width: 0 1px 1px;
-    text-align: center;
-}
-.table-data{
-    justify-content: center;
-}
-
 .custom-margin-left{
     margin-left: 60px;
 }
 
-@media screen and (max-width: 1000px) {
+.custom-margin-table {
+    margin-left: 60px;
+    width: 150%;
+}
 
-    table td {
-        display: block;
-        text-align: right;
-    }
+.header-cell {
+    margin-right: 10px;
+    padding: 0 10px;
+}
 
-    table td:before {
-        content: attr(data-label);
-        float: left;
-        font-weight: bold;
-        margin-right: 10px;
-    }
-
-    /*remove thead*/
-     table thead {
-        display: none;
-    }
-
-    .header {
-        color: #816503;
-    }
-
+/* Kontainer agar tabel responsif dan berada di tengah */
+.container-xxl {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    /* Mengaktifkan scroll horizontal pada layar kecil */
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .table {
-    width: 100%;
-    /* Membuat tabel memenuhi lebar dari wrapper */
-    table-layout: fixed;
-    /* Mengontrol tata letak tabel agar lebih konsisten */
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+    /* Memusatkan tabel di dalam kontainer */
+    padding-left: 40px;
+    /* Menambahkan jarak kiri */
+    padding-right: 40px;
+    /* Menambahkan jarak kanan */
+    border-collapse: collapse;
+    /* Menghapus jarak antar sel tabel */
+    text-align: left;
+    /* Teks rata kiri dalam tabel */
+    background-color: #fff;
+    /* Warna latar belakang tabel */
+}
+/* Gaya untuk header dan sel tabel */
+.table th,
+.table td {
+    padding: 12px 15px;
+    /* Ruang dalam sel */
+    border: none;
+    /* Border untuk semua sel */
+}
+
+/* Gaya khusus untuk header */
+.header-cell {
+    background-color: #f5f5f5;
+    /* Latar belakang abu-abu muda */
+    font-weight: bold;
+    /* Teks tebal untuk header */
+    text-align: left;
+    /* Teks rata kiri */
+}
+
+/* Gaya responsif untuk layar kecil */
+@media (max-width: 768px) {
+
+    .table th,
+    .table td {
+        padding: 8px 10px;
+        /* Kurangi padding di layar kecil */
+        font-size: 12px;
+        /* Kurangi ukuran font */
+    }
+}
+
+.box-container .table-container {
+    padding: 50%;
 }
 

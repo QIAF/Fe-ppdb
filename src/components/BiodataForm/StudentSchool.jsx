@@ -1,5 +1,5 @@
 import React from "react";
-import {Input} from "../Ui/Form/Input";
+import { Input } from "../Ui/Form/Input";
 import { ErrMsg } from "../Error/ErrMsg";
 
 function StudentSchool({ handleInput, formData, error }) {
@@ -9,7 +9,7 @@ function StudentSchool({ handleInput, formData, error }) {
         <div className="table-responsive container ">
           <div className="center">
             <div className="header">
-              <h5 style={{ color: "#816503" }}>Raport</h5>
+              <h5 style={{ color: "#816503" }}>Data Asal Sekolah</h5>
             </div>
             <br />
             <div className="body center ">

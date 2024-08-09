@@ -15,6 +15,7 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Box from "../Ui/Box/Box";
 
 function Form() {
   const [error, setError] = useState({});
@@ -234,45 +235,36 @@ function Form() {
 
   return (
     <>
-      <div
-        className="biodata container"
-        style={{
-          height: "fit-content",
-          minHeight: "13rem",
-        }}
-      >
-        <div className="box-content ">
-          <div className="box ">
-            <div className="container">
-              <div className="header"></div>
-              <div className="body">{PageDisplay()}</div>
-              <div className="footer d-grid gap-2 d-md-flex justify-content-md-end">
-                <button
-                  className="btn btn-primary me-md-2"
-                  type="button"
-                  disabled={page === 0}
-                  onClick={() => setPage((currPage) => currPage - 1)}
-                >
-                  Sebelumnya
-                </button>
-                <button
-                  className="btn btn-primary"
-                  type="button"
-                  onClick={() => {
-                    if (page === FormTitles.length - 1) {
-                      handlePostForm(formData);
-                    } else {
-                      setPage((currPage) => currPage + 1);
-                    }
-                  }}
-                >
-                  {page === FormTitles.length - 1 ? "Kirim" : "Selanjutnya"}
-                </button>
-              </div>
+      <Box>
+        <div className="box ">
+          <div className="container">
+            <div className="body">{PageDisplay()}</div>
+            <div className="footer d-grid gap-3 d-md-flex justify-content-md-end mb-3">
+              <button
+                className="btn btn-primary me-md-2"
+                type="button"
+                disabled={page === 0}
+                onClick={() => setPage((currPage) => currPage - 1)}
+              >
+                Sebelumnya
+              </button>
+              <button
+                className="btn btn-primary"
+                type="button"
+                onClick={() => {
+                  if (page === FormTitles.length - 1) {
+                    handlePostForm(formData);
+                  } else {
+                    setPage((currPage) => currPage + 1);
+                  }
+                }}
+              >
+                {page === FormTitles.length - 1 ? "Kirim" : "Selanjutnya"}
+              </button>
             </div>
           </div>
         </div>
-      </div>
+      </Box>
     </>
   );
 }

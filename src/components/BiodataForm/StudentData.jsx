@@ -1,8 +1,8 @@
 import React from "react";
-import {Input} from "../Ui/Form/Input";
+import { Input } from "../Ui/Form/Input";
 import { ErrMsg } from "../Error/ErrMsg";
 
-function StudentData({ formData, handleInput, error , handleChange}) {
+function StudentData({ formData, handleInput, error, handleChange }) {
   return (
     <div className="flex-column mx-4 justify-content-center">
       <div className="justify-content-center">
@@ -70,10 +70,7 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                   </div>
                 </div>
                 <div className="row mb-3">
-                  <label
-                    htmlFor="place_birth"
-                    className="col col-form-label"
-                  >
+                  <label htmlFor="place_birth" className="col col-form-label">
                     Tempat lahir
                   </label>
                   <div className="col-sm-8">
@@ -90,10 +87,7 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                   </div>
                 </div>
                 <div className="row mb-3">
-                  <label
-                    htmlFor="date_birth"
-                    className="col col-form-label"
-                  >
+                  <label htmlFor="date_birth" className="col col-form-label">
                     Tanggal lahir
                   </label>
                   <div className="col-sm-8">
@@ -105,7 +99,7 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                       value={formData.date_birth}
                       onChange={handleInput}
                     />
-                     <ErrMsg msg={error.date_birth} />
+                    <ErrMsg msg={error.date_birth} />
                   </div>
                 </div>
                 <div className="row mb-3">
@@ -185,7 +179,10 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                   </div>
                 </div>
                 <div className="row mb-3">
-                  <label htmlFor="student_height" className="col col-form-label">
+                  <label
+                    htmlFor="student_height"
+                    className="col col-form-label"
+                  >
                     Tinggi Badan
                   </label>
                   <div className="col-sm-8">
@@ -201,7 +198,10 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                   </div>
                 </div>
                 <div className="row mb-3">
-                  <label htmlFor="student_weight" className="col col-form-label">
+                  <label
+                    htmlFor="student_weight"
+                    className="col col-form-label"
+                  >
                     Berat Badan
                   </label>
                   <div className="col-sm-8">
@@ -233,10 +233,7 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                   </div>
                 </div>
                 <div className="row mb-3">
-                  <label
-                    htmlFor="student_kps"
-                    className="col col-form-label"
-                  >
+                  <label htmlFor="student_kps" className="col col-form-label">
                     student_kps
                   </label>
                   <div className="col-sm-8">
@@ -252,10 +249,7 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                   </div>
                 </div>
                 <div className="row mb-3">
-                  <label
-                    htmlFor="student_hobby"
-                    className="col col-form-label"
-                  >
+                  <label htmlFor="student_hobby" className="col col-form-label">
                     Hobi
                   </label>
                   <div className="col-sm-8">

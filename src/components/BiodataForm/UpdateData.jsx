@@ -1,52 +1,10 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router";
-import Box from "../Ui/Box/Box";
-import NavbarForm from "../Navbar/NavbarForm";
-import "./Form.css";
+import React from "react";
 
-function FetchDataStudent() {
-  function handleClick(route) {
-    navigate(route);
-  }
-
-  const navigate = useNavigate();
-
-  const [data, setData] = useState(null);
-  const { id } = useParams();
-
-  const fetchData = async () => {
-    const token = localStorage.getItem("token");
-    console.log("Token for request:", token); // Ambil token dari localStorage
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`, // Sertakan token dalam header Authorization
-      },
-    };
-
-    try {
-      const res = await axios.get(
-        `http://localhost:3000/api/v1/studentData/${id}`,
-        config
-      );
-
-      console.log("API response:", res.data);
-      setData(res.data.data);
-    } catch (error) {
-      console.error("Terjadi kesalahan:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, [id]);
-
-  console.log("Fetched data:", data);
-
+function UpdateData() {
   return (
     <div>
-      <NavbarForm />
-      <Box title={"Data Siswa"}>
+      <h1>maasuk</h1>
+      {/* <Box title={"Data Siswa"}>
         <div className="container-xxl">
           <table className="table table-hover mw-100">
             <tbody>
@@ -121,7 +79,7 @@ function FetchDataStudent() {
       </Box>
       <Box title={"Data Orangtua/Wali Siswa"}>
         <div className="container-xxl">
-          <table className="table table-hover mw-100 ">
+          <table className="table table-hover mw-100">
             <tbody>
               <tr>
                 <td>Nama Ayah</td>
@@ -129,12 +87,14 @@ function FetchDataStudent() {
                 <td>Ayah</td>
               </tr>
               <tr>
-                <td>Tempat Tanggal Lahir</td>
+                <td>Tempat Lahir</td>
                 <td>:</td>
-                <td>
-                  {data?.findData?.place_birth_father}/
-                  {data?.findData?.father_birth}
-                </td>
+                <td>{data?.findData?.place_birth_father}</td>
+              </tr>
+              <tr>
+                <td>Tanggal Lahir Ayah</td>
+                <td>:</td>
+                <td>{data?.findData?.father_birth}</td>
               </tr>
               <tr>
                 <td>Nama Ibu</td>
@@ -142,12 +102,14 @@ function FetchDataStudent() {
                 <td>{data?.findData?.mother_name}</td>
               </tr>
               <tr>
-                <td>Tempat Tanggal Lahir Ibu</td>
+                <td>Tempat Lahir Ibu</td>
                 <td>:</td>
-                <td>
-                  {data?.findData?.place_birth_mother} /
-                  {data?.findData?.mother_birth}
-                </td>
+                <td>{data?.findData?.place_birth_mother}</td>
+              </tr>
+              <tr>
+                <td>Tanggal Lahir Ibu</td>
+                <td>:</td>
+                <td>{data?.findData?.mother_birth}</td>
               </tr>
               <tr>
                 <td>Nomor Telepon Rumah</td>
@@ -155,12 +117,12 @@ function FetchDataStudent() {
                 <td>{data?.findData?.home_phone}</td>
               </tr>
               <tr>
-                <td>Pekerjaan / Penghasilan Ayah</td>
+                <td>Pekerjaan Ayah</td>
                 <td>:</td>
                 <td>{data?.findData?.father_job}</td>
               </tr>
               <tr>
-                <td>Pekerjaan Ibu / Penghasilan</td>
+                <td>Pekerjaan Ibu</td>
                 <td>:</td>
                 <td>{data?.findData?.mother_job}</td>
               </tr>
@@ -192,23 +154,9 @@ function FetchDataStudent() {
         <div className="table-wrapper ">
           <table
             style={{ width: "100%" }}
-            className="table table-borderless table-striped mt-3"
+            className="table table-borderless table-striped"
           >
-            {/* <thead className="m-auto text-center">
-              <th rowSpan={2}>Mata Pelajaran</th>
-              <th colSpan={2}>Kelas 7</th>
-              <th colSpan={2}>Kelas 8</th>
-              <th>Kelas 9</th>
-            </thead> */}
-            <tbody className="m-auto text-center">
-              <tr className="">
-                <td>Mata Pelajaran</td>
-                <td>Semester 1</td>
-                <td>Semester 2</td>
-                <td>Semester 3</td>
-                <td>Semester 4</td>
-                <td>Semester 5</td>
-              </tr>
+            <tbody className="m-auto">
               <tr>
                 <td>Matematika</td>
                 <td>{data?.findReportScore?.mathematics1}</td>
@@ -241,28 +189,12 @@ function FetchDataStudent() {
                 <td>{data?.findReportScore?.english4}</td>
                 <td>{data?.findReportScore?.english5}</td>
               </tr>
-              <tr>
-                <td>Total Rata-Rata</td>
-                <td colSpan={5}>{data?.findReportScore?.total_report_score}</td>
-              </tr>
             </tbody>
           </table>
         </div>
-        <div className="footer d-grid gap-3 d-md-flex justify-content-md-end m-5">
-          <button
-            className="btn btn-success me-md-2"
-            type="button"
-            onClick={() => handleClick("/updateData/:id")}
-          >
-            Edit
-          </button>
-          <button className="btn btn-light" type="button">
-            Cetak
-          </button>
-        </div>
-      </Box>
+      </Box> */}
     </div>
   );
 }
 
-export default FetchDataStudent;
+export default UpdateData;
