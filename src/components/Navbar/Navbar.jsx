@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "react-router";
 import { useState } from "react";
 import { Login } from "../../pages/Login/Login";
 import ImgLogo from "../../assets/images/img-logo-white.png";
+import ImgAi from "../../assets/images/img-ai.png";
 import "./Navbar.css";
 
 function Navbar() {

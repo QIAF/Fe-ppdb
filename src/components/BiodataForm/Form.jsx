@@ -33,10 +33,12 @@ function Form() {
       ? JSON.parse(savedData)
       : {
           student_name: "",
+          family_card_number: "",
           student_gender: "",
           place_birth: "",
           date_birth: "",
           student_address: "",
+          student_address_now: "",
           student_distance: "",
           student_religion: "",
           student_blood_type: "",
@@ -48,10 +50,12 @@ function Form() {
 
           father_name: "",
           father_job: "",
+          father_income: "",
           place_birth_father: "",
           father_birth: "",
           mother_name: "",
           mother_job: "",
+          mother_income: "",
           place_birth_mother: "",
           mother_birth: "",
           phoneNumber_house: "",
@@ -62,8 +66,10 @@ function Form() {
           guardian_job: "",
 
           school_name: "",
+          school_status: "",
           school_address: "",
           ijazah_number: "",
+          major_choice: "",
           nisn: "",
 
           mathematics1: "",

@@ -1,5 +1,5 @@
 import React from "react";
-import {Input} from "../Ui/Form/Input";
+import { Input } from "../Ui/Form/Input";
 import { ErrMsg } from "../Error/ErrMsg";
 
 function StudentParentData({ handleInput, formData, error }) {
@@ -170,6 +170,25 @@ function StudentParentData({ handleInput, formData, error }) {
                 </div>
                 <div className="row mb-3">
                   <label
+                    htmlFor="inputfather_job"
+                    className="col col-form-label"
+                  >
+                    Pendapatan perbulan
+                  </label>
+                  <div className="col-sm-8">
+                    <Input
+                      type={"text"}
+                      className={"form-control"}
+                      id={"father_income"}
+                      name="father_income"
+                      value={formData.father_income}
+                      onChange={handleInput}
+                    />
+                    <ErrMsg msg={error.father_income} />
+                  </div>
+                </div>
+                <div className="row mb-3">
+                  <label
                     htmlFor="inputmother_job"
                     className="col col-form-label"
                   >
@@ -185,6 +204,25 @@ function StudentParentData({ handleInput, formData, error }) {
                       onChange={handleInput}
                     />
                     <ErrMsg msg={error.mother_job} />
+                  </div>
+                </div>
+                <div className="row mb-3">
+                  <label
+                    htmlFor="inputmother_job"
+                    className="col col-form-label"
+                  >
+                    Pendapatan Perbulan
+                  </label>
+                  <div className="col-sm-8">
+                    <Input
+                      type={"text"}
+                      className={"form-control"}
+                      id={"mother_income"}
+                      name="mother_income"
+                      value={formData.mother_income}
+                      onChange={handleInput}
+                    />
+                    <ErrMsg msg={error.mother_income} />
                   </div>
                 </div>
               </div>

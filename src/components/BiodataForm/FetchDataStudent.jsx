@@ -56,6 +56,11 @@ function FetchDataStudent() {
                 <td>{data?.findData?.student_name}</td>
               </tr>
               <tr>
+                <td>NIK</td>
+                <td>:</td>
+                <td>{data?.findData?.family_card_number}</td>
+              </tr>
+              <tr>
                 <td>Jenis Kelamin</td>
                 <td>:</td>
                 <td>{data?.findData?.student_gender}</td>
@@ -76,6 +81,11 @@ function FetchDataStudent() {
                 <td>{data?.findData?.student_address}</td>
               </tr>
               <tr>
+                <td>Alamat Di Yogyakarta</td>
+                <td>:</td>
+                <td>{data?.findData?.student_address_now}</td>
+              </tr>
+              <tr>
                 <td>Jarak Rumah ke Sekolah</td>
                 <td>:</td>
                 <td>{data?.findData?.student_distance}</td>
@@ -91,14 +101,12 @@ function FetchDataStudent() {
                 <td>{data?.findData?.student_blood_type}</td>
               </tr>
               <tr>
-                <td>Tinggi Badan</td>
+                <td>Tinggi / Berat Badan</td>
                 <td>:</td>
-                <td>{data?.findData?.student_weight}</td>
-              </tr>
-              <tr>
-                <td>Berat Badan</td>
-                <td>:</td>
-                <td>{data?.findData?.student_height}</td>
+                <td>
+                  {data?.findData?.student_height} /
+                  {data?.findData?.student_weight}
+                </td>
               </tr>
               <tr>
                 <td>Anak Ke -</td>
@@ -106,7 +114,7 @@ function FetchDataStudent() {
                 <td>{data?.findData?.student_child}</td>
               </tr>
               <tr>
-                <td>KPS</td>
+                <td>KPS PKH/PIP/KMS Kota Yogyakarta</td>
                 <td>:</td>
                 <td>{data?.findData?.student_kps}</td>
               </tr>
@@ -157,12 +165,18 @@ function FetchDataStudent() {
               <tr>
                 <td>Pekerjaan / Penghasilan Ayah</td>
                 <td>:</td>
-                <td>{data?.findData?.father_job}</td>
+                <td>
+                  {data?.findData?.father_job} / {data?.findData?.father_income}{" "}
+                  {"Perbulan"}
+                </td>
               </tr>
               <tr>
                 <td>Pekerjaan Ibu / Penghasilan</td>
                 <td>:</td>
-                <td>{data?.findData?.mother_job}</td>
+                <td>
+                  {data?.findData?.mother_job} / {data?.findData?.mother_income}{" "}
+                  {"Perbulan"}
+                </td>
               </tr>
               <tr>
                 <td>Nama Wali</td>
@@ -180,9 +194,47 @@ function FetchDataStudent() {
                 <td>{data?.findData?.guardian_phone}</td>
               </tr>
               <tr>
-                <td>Pekerjaan Wali</td>
+                <td>Pekerjaan</td>
                 <td>:</td>
                 <td>{data?.findData?.guardian_job}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </Box>
+      <Box title={"Data Asal Sekolah"}>
+        <div className="container-xxl">
+          <table className="table table-hover mw-100 ">
+            <tbody>
+              <tr>
+                <td>Nama Sekolah Asal</td>
+                <td>:</td>
+                <td>{data?.findData?.school_name}</td>
+              </tr>
+              <tr>
+                <td>Status Sekolah</td>
+                <td>:</td>
+                <td>{data?.findData?.school_status}</td>
+              </tr>
+              <tr>
+                <td>Alamat Sekolah Asal</td>
+                <td>:</td>
+                <td>{data?.findData?.school_address}</td>
+              </tr>
+              <tr>
+                <td>Nomor Ijazah</td>
+                <td>:</td>
+                <td>{data?.findData?.ijazah_number}</td>
+              </tr>
+              <tr>
+                <td>Pilihan Bidang Keahlian</td>
+                <td>:</td>
+                <td>{data?.findData?.major_choice}</td>
+              </tr>
+              <tr>
+                <td>NISN</td>
+                <td>:</td>
+                <td>{data?.findData?.major_nisn}</td>
               </tr>
             </tbody>
           </table>
@@ -242,8 +294,12 @@ function FetchDataStudent() {
                 <td>{data?.findReportScore?.english5}</td>
               </tr>
               <tr>
-                <td>Total Rata-Rata</td>
-                <td colSpan={5}>{data?.findReportScore?.total_report_score}</td>
+                <td>
+                  <b>Total Rata-Rata</b>
+                </td>
+                <td colSpan={5}>
+                  <b>{data?.findReportScore?.total_report_score}</b>
+                </td>
               </tr>
             </tbody>
           </table>

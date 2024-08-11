@@ -2,10 +2,12 @@ export const validateForm = (formData, setError) => {
   let valid = true;
   const newErrors = {
     student_name: "",
+    family_card_number: "",
     student_gender: "",
     place_birth: "",
     date_birth: "",
     student_address: "",
+    student_address_now: "",
     student_distance: "",
     student_religion: "",
     student_blood_type: "",
@@ -17,10 +19,12 @@ export const validateForm = (formData, setError) => {
 
     father_name: "",
     father_job: "",
+    father_income: "",
     place_birth_father: "",
     father_birth: "",
     mother_name: "",
     mother_job: "",
+    mother_income: "",
     place_birth_mother: "",
     mother_birth: "",
     phoneNumber_house: "",
@@ -31,8 +35,10 @@ export const validateForm = (formData, setError) => {
     guardian_job: "",
 
     school_name: "",
+     school_status: "",
     school_address: "",
     ijazah_number: "",
+    major_choice: "",
     nisn: "",
     studentDocument: "",
 
@@ -65,6 +71,10 @@ export const validateForm = (formData, setError) => {
     newErrors.student_name = "wajib diisi";
     valid = false;
   }
+  if (!formData.family_card_number) {
+    newErrors.family_card_number = "wajib diisi";
+    valid = false;
+  }
   if (!formData.student_gender) {
     newErrors.student_gender = "wajib diisi";
     valid = false;
@@ -79,6 +89,10 @@ export const validateForm = (formData, setError) => {
   }
   if (!formData.student_address) {
     newErrors.student_address = "wajib diisi";
+    valid = false;
+  }
+  if (!formData.student_address_now) {
+    newErrors.student_address_now = "wajib diisi";
     valid = false;
   }
   if (!formData.student_distance) {
@@ -122,6 +136,10 @@ export const validateForm = (formData, setError) => {
     newErrors.father_job = "wajib diisi";
     valid = false;
   }
+  if (!formData.father_income) {
+    newErrors.father_income = "wajib diisi";
+    valid = false;
+  }
   if (!formData.place_birth_father) {
     newErrors.place_birth_father = "wajib diisi";
     valid = false;
@@ -132,6 +150,10 @@ export const validateForm = (formData, setError) => {
   }
   if (!formData.mother_job) {
     newErrors.mother_job = "wajib diisi";
+    valid = false;
+  }
+  if (!formData.mother_income) {
+    newErrors.mother_income = "wajib diisi";
     valid = false;
   }
   if (!formData.place_birth_mother) {
@@ -150,12 +172,20 @@ export const validateForm = (formData, setError) => {
     newErrors.school_name = "wajib diisi";
     valid = false;
   }
+  if (!formData.school_status) {
+    newErrors.school_status = "wajib diisi";
+    valid = false;
+  }
   if (!formData.school_address) {
     newErrors.school_address = "wajib diisi";
     valid = false;
   }
   if (!formData.ijazah_number) {
     newErrors.ijazah_number = "wajib diisi";
+    valid = false;
+  }
+  if (!formData.major_choice) {
+    newErrors.major_choice = "wajib diisi";
     valid = false;
   }
   if (!formData.nisn) {

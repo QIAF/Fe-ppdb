@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import "./Navbar.css";
 import ImgLogo from "../../assets/images/img-logo-hijau.png";
+import ImgGreen from "../../assets/images/img-ai-green.png";
 
 function NavbarForm() {
   const [modalLogin, setmodalLogin] = useState(false);
@@ -32,6 +33,19 @@ function NavbarForm() {
             id="navbar-major"
             className="menu-items-desktop-v2 list-menu navbar-nav me-auto mb-2 mb-lg-0 "
           >
+            <li>
+              <a
+                className="home"
+                // aria-current="page"
+                onClick={() => handleClick("/")}
+              >
+                <img
+                  src={ImgGreen}
+                  style={{ maxWidth: "40px" }}
+                  alt="Chat AI"
+                />
+              </a>
+            </li>
             <li>
               <a
                 className="home"

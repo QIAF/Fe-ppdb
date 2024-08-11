@@ -8,12 +8,16 @@ import PendaftaranOnline from "../../components/PendaftaranOnline";
 import Sekilas from "../../components/Sekilas";
 import Testimonial from "../../components/Testimonial";
 import "./LandingPage.css";
+import ChatBot from "../../components/ChatBot/ChatBot";
+import ChatIcon from "../../components/ChatBot/ChatIcon";
 
 function LandingPage() {
   return (
     <>
       <Navbar />
       <Heroes />
+      {/* <ChatBot /> */}
+      <ChatIcon />
       <Sekilas />
       <Testimonial />
       <AlurDaftar />

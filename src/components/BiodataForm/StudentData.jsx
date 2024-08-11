@@ -32,6 +32,25 @@ function StudentData({ formData, handleInput, error, handleChange }) {
                 </div>
                 <div className="row mb-3">
                   <label
+                    htmlFor="family_card_number"
+                    className="col col-form-label"
+                  >
+                    NIK
+                  </label>
+                  <div className="col-sm-8 ">
+                    <Input
+                      type={"text"}
+                      className={"form-control"}
+                      id={"family_card_number"}
+                      name="family_card_number"
+                      value={formData.family_card_number}
+                      onChange={handleInput}
+                    />
+                    <ErrMsg msg={error.family_card_number} />
+                  </div>
+                </div>
+                <div className="row mb-3">
+                  <label
                     htmlFor="student_gender"
                     className="col col-form-label"
                   >
@@ -119,6 +138,25 @@ function StudentData({ formData, handleInput, error, handleChange }) {
                       onChange={handleInput}
                     />
                     <ErrMsg msg={error.student_address} />
+                  </div>
+                </div>
+                <div className="row mb-3">
+                  <label
+                    htmlFor="student_distance"
+                    className="col col-form-label"
+                  >
+                    Alamat di Yogyakrta
+                  </label>
+                  <div className="col-sm-8">
+                    <Input
+                      type={"text"}
+                      className={"form-control"}
+                      id={"student_address_now"}
+                      name="student_address_now"
+                      value={formData.student_address_now}
+                      onChange={handleInput}
+                    />
+                    <ErrMsg msg={error.student_address_now} />
                   </div>
                 </div>
                 <div className="row mb-3">
