@@ -3,7 +3,7 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 8px;
     border: black;
-    max-height: 1500px;
+    max-height: 2000px;
     margin: 5rem auto 8.1rem auto;
     max-width: 750px;
     height: fit-content;
@@ -15,8 +15,8 @@
 }
 
 .custom-margin-table {
-    margin-left: 60px;
-    width: 150%;
+    margin-left: 15px;
+    width: 60%;
 }
 
 .header-cell {
@@ -85,3 +85,11 @@
     padding: 50%;
 }
 
+.form-check-label {
+    font-size: 0.750rem;
+    /* Adjust to desired size */
+}
+
+ .detail-container {
+     width: 100%;
+ }

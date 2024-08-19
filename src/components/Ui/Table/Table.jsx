@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Table.css";
-import {Input} from "../Form/Input";
+import { Input } from "../Form/Input";
 
 function Table() {
   return (
@@ -8,7 +8,9 @@ function Table() {
       <table className="table-bordered">
         <thead>
           <tr>
-            <th rowSpan={2} scope="col">Mata Pelajaran</th>
+            <th rowSpan={2} scope="col">
+              Mata Pelajaran
+            </th>
             <th colSpan={2} scope="col text-center">
               Kelas 7
             </th>
@@ -21,18 +23,28 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>#</td>
-                <td><b>Semester 1</b></td>
-                <td><b>Semester 2</b></td>
-                <td><b>Semester 3</b></td>
-                <td><b>Semester 4</b></td>
-                <td><b>Semester 5</b></td>
-            </tr>
+          <tr>
+            <td>#</td>
+            <td>
+              <b>Semester 1</b>
+            </td>
+            <td>
+              <b>Semester 2</b>
+            </td>
+            <td>
+              <b>Semester 3</b>
+            </td>
+            <td>
+              <b>Semester 4</b>
+            </td>
+            <td>
+              <b>Semester 5</b>
+            </td>
+          </tr>
           <tr>
             <td>Matematika</td>
             <td>
-              <Input type={"number"} className={"form-control"}  />
+              <Input type={"number"} className={"form-control"} />
             </td>
 
             <td>
@@ -65,7 +77,6 @@ function Table() {
             <td>
               <Input type={"number"} className={"form-control"} value={""} />
             </td>
-
           </tr>
           <tr>
             <td>Bahasa Indonesia</td>
@@ -84,7 +95,6 @@ function Table() {
             <td>
               <Input type={"number"} className={"form-control"} value={""} />
             </td>
-
           </tr>
           <tr>
             <td>Bahasa Inggris</td>

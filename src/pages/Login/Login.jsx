@@ -93,28 +93,6 @@ export const Login = ({ title, props }) => {
               delay: 800,
             });
           }
-
-          // try {
-          //   // Melakukan request GET untuk mendapatkan user data
-          //   const resUser = await axios.get(
-          //     `http://localhost:3000/api/v1/auth/me/${id}`,
-          //     config
-          //   );
-          //   console.log("user manaa", resUser);
-          //   const user_id = resUser.data.data.id;
-          //   console.log("User ID:", user_id);
-
-          //   // Simpan user_id ke localStorage
-          //   localStorage.setItem("user_id", user_id);
-
-          //   // Redirect ke halaman berikutnya
-          //   navigate("/formData");
-          // } catch (error) {
-          //   console.error("Gagal mendapatkan user data:", error);
-          //   toast.error("Gagal mendapatkan data pengguna.", {
-          //     delay: 800,
-          //   });
-          // }
         } else {
           console.error("Token tidak ditemukan dalam respons");
           toast.error("Token tidak ditemukan dalam respons.", { delay: 800 });

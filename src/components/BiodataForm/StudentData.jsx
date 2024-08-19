@@ -186,14 +186,32 @@ function StudentData({ formData, handleInput, error, handleChange }) {
                     Agama
                   </label>
                   <div className="col-sm-8">
-                    <Input
+                    <select
+                      className="form-select"
+                      aria-label="Default select example"
+                      id="student_religion"
+                      name="student_religion"
+                      value={formData.student_religion} // Menyinkronkan nilai select dengan formData
+                      onChange={handleInput} // Memperbarui formData saat pilihan berubah
+                    >
+                      <option value="">Pilih Agama</option>{" "}
+                      {/* Opsi default untuk mendorong pilihan */}
+                      <option value="Islam">Islam</option>
+                      <option value="Kristen">Kristen</option>
+                      <option value="Katolik">Katolik</option>
+                      <option value="Hindu">Hindu</option>
+                      <option value="Budha">Budha</option>
+                      <option value="Khonghucu">Khonghucu</option>
+                    </select>
+
+                    {/* <Input
                       type={"text"}
                       className={"form-control"}
                       id={"student_religion"}
                       name="student_religion"
                       value={formData.student_religion}
                       onChange={handleInput}
-                    />
+                    /> */}
                     <ErrMsg msg={error.student_religion} />
                   </div>
                 </div>

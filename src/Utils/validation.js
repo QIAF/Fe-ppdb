@@ -300,10 +300,12 @@ export const validateForm = (formData, setError) => {
 export const dataStudent = (formData) => {
   const formStudent = {
     student_name: formData.student_name,
+    family_card_number:formData.family_card_number,
     student_gender: formData.student_gender,
     place_birth: formData.place_birth,
     date_birth: formData.date_birth,
     student_address: formData.student_address,
+    student_address_now:formData.student_address_now,
     student_distance: formData.student_distance,
     student_religion: formData.student_religion,
     student_blood_type: formData.student_blood_type,
@@ -315,10 +317,12 @@ export const dataStudent = (formData) => {
 
     father_name: formData.father_name,
     father_job: formData.father_job,
+    father_income: formData.father_income,
     place_birth_father: formData.place_birth_father,
     father_birth: formData.father_birth,
     mother_name: formData.mother_name,
     mother_job: formData.mother_job,
+    mother_income:formData.mother_income,
     place_birth_mother: formData.place_birth_mother,
     mother_birth: formData.mother_birth,
     phoneNumber_house: formData.phoneNumber_house,
@@ -329,8 +333,10 @@ export const dataStudent = (formData) => {
     guardian_job: formData.guardian_job,
 
     school_name: formData.school_name,
+    school_status:formData.school_status,
     school_address: formData.school_address,
     ijazah_number: formData.ijazah_number,
+    major_choice: formData.major_choice,
     nisn: formData.nisn,
     studentDocument: formData.studentDocument,
     // studentDocument: formData.studentDocument instanceof File ? formData.studentDocument : null,

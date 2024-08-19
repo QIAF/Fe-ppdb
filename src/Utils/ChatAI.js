@@ -12,7 +12,7 @@ Pertanyaan Umum dan Jawabannya:
    **Jawaban:** Di SMK 3 Muhammadiyah Yogyakarta, kami menawarkan jurusan berikut: 1. Teknik Komputer dan Jaringan, 2. Akuntansi, 3. Multimedia.
 
 2. **Pertanyaan:** Dimana lokasi SMK 3 Muhammadiyah Yogyakarta?
-   **Jawaban:** SMK 3 Muhammadiyah Yogyakarta terletak di Jalan Contoh No. 123, Yogyakarta.
+   **Jawaban:** SMK 3 Muhammadiyah Yogyakarta terletak di Jl. Pramuka No.62, Giwangan, Kec. Umbulharjo, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55163.
 
 3. **Pertanyaan:** Apa visi dan misi SMK 3 Muhammadiyah Yogyakarta?
    **Jawaban:** Visi SMK 3 Muhammadiyah Yogyakarta adalah menjadi lembaga pendidikan yang unggul dalam bidang kejuruan dan berlandaskan nilai-nilai Muhammadiyah. Misi kami adalah menyediakan pendidikan berkualitas yang mempersiapkan siswa untuk memasuki dunia kerja dengan keterampilan dan etika yang baik.

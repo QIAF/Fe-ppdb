@@ -99,6 +99,7 @@ function Form() {
           studentDocument: "",
         };
   });
+  console.log("data", formData);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -111,7 +112,7 @@ function Form() {
   useEffect(() => {
     // Simpan formData ke localStorage setiap kali formData berubah
     if (isLoggedIn) {
-      localStorage.setItem("getData", JSON.stringify(formData));
+      localStorage.setItem("formData", JSON.stringify(formData));
     }
   }, [formData, isLoggedIn]);
 
@@ -122,6 +123,7 @@ function Form() {
       [name]: value,
     });
     validateLogin(formData, setError);
+    console.log("masuk");
   };
 
   const handleChange = (e) => {
@@ -132,40 +134,200 @@ function Form() {
     }));
   };
 
-  const handlePostForm = async (formData) => {
+  const handleCheckboxChange = (e) => {
+    const { value, checked } = e.target;
+    const currentChoices = formData.major_choice
+      ? formData.major_choice.split(",")
+      : [];
+
+    let updatedChoices;
+
+    if (checked) {
+      updatedChoices = [...new Set([...currentChoices, value])];
+    } else {
+      updatedChoices = currentChoices.filter((choice) => choice !== value);
+    }
+
+    const updatedChoicesString = updatedChoices.join(",");
+    setFormData({
+      ...formData,
+      major_choice: updatedChoicesString,
+    });
+  };
+
+  // const handlePostForm = async () => {
+  //   console.log("masuk tak?", formData);
+  //   const dataToSend = dataStudent(formData);
+
+  //   const formDataToSend = new FormData();
+  //   for (let key in dataToSend) {
+  //     formDataToSend.append(key, dataToSend[key]); // Memasukkan setiap properti dari dataToSend ke formDataToSend
+  //   }
+
+  //   if (validateForm(formData, setError)) {
+  //     const token = localStorage.getItem("token");
+  //     console.log("Token for request:", token); // Ambil token dari localStorage
+  //     const config = {
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //         Authorization: `Bearer ${token}`, // Sertakan token dalam header Authorization
+  //       },
+  //     };
+
+  //     try {
+  //       const res = await axios.post(
+  //         "http://localhost:3000/api/v1/studentData/create",
+  //         formDataToSend,
+  //         config
+  //       );
+
+  //       console.log("Response status:", res.status);
+  //       console.log("Response data:", res.data);
+
+  //       if (res.status === 200) {
+  //         toast.success("Berhasil menambahkan data", { delay: 800 });
+  //         navigate("/getData"); // Pindah ke halaman getData setelah sukses
+  //         localStorage.removeItem("formData"); // Hapus data dari localStorage setelah sukses
+  //       }
+  //     } catch (error) {
+  //       toast.error("Gagal menambahkan data", { delay: 800 });
+  //     }
+  //   } else {
+  //     alert("Data belum lengkap");
+  //   }
+  // };
+
+  // const handlePostForm = async () => {
+  //   console.log("masuk tak?", formData);
+  //   const dataToSend = dataStudent(formData);
+
+  //   const formDataToSend = new FormData();
+  //   for (let key in dataToSend) {
+  //     formDataToSend.append(key, dataToSend[key]);
+  //   }
+
+  //   if (validateForm(formData, setError)) {
+  //     const token = localStorage.getItem("token");
+  //     console.log("Token for request:", token);
+
+  //     const config = {
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //         Authorization: `Bearer ${token}`, // Fix the token header format
+  //       },
+  //     };
+
+  //     try {
+  //       // First API call to submit the form data
+  //       const res = await axios.post(
+  //         "http://localhost:3000/api/v1/studentData/create",
+  //         formDataToSend,
+  //         config
+  //       );
+
+  //       console.log("Response status:", res.status);
+  //       console.log("Response data:", res.data);
+
+  //       if (res.status === 200) {
+  //         toast.success("Berhasil menambahkan data", { delay: 800 });
+  //         navigate("/getData"); // Navigate to getData page after success
+
+  //         // Assuming user_id is returned in the response data from the first API call
+  //         const userId = res.data.user_id; // Replace with the actual way to get user_id from the response
+
+  //         // Make a second API call to submit scores
+  //         if (userId) {
+  //           const scoreData = {
+  //             health_score: formData.healthScore, // Replace with actual values
+  //             interview_score: formData.interviewScore, // Replace with actual values
+  //           };
+
+  //           await axios.post("http://localhost:3000/api/v1/finalScore", {
+  //             ...scoreData,
+  //             user_id: userId,
+  //           });
+
+  //           console.log("Final score submitted successfully");
+  //         }
+
+  //         localStorage.removeItem("formData"); // Clear the form data from localStorage
+  //       }
+  //     } catch (error) {
+  //       toast.error("Gagal menambahkan data", { delay: 800 });
+  //       console.error("Error occurred:", error);
+  //     }
+  //   } else {
+  //     alert("Data belum lengkap");
+  //   }
+  // };
+
+  const handlePostForm = async () => {
+    console.log("masuk tak?", formData);
     const dataToSend = dataStudent(formData);
+
     const formDataToSend = new FormData();
     for (let key in dataToSend) {
-      formDataToSend.append(key, dataToSend[key]); // Memasukkan setiap properti dari dataToSend ke formDataToSend
+      formDataToSend.append(key, dataToSend[key]);
     }
 
     if (validateForm(formData, setError)) {
       const token = localStorage.getItem("token");
-      console.log("Token for request:", token); // Ambil token dari localStorage
+      console.log("Token untuk request:", token);
+
       const config = {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`, // Sertakan token dalam header Authorization
+          Authorization: `Bearer ${token}`,
         },
       };
 
       try {
-        const res = await axios.post(
+        // Persiapkan kedua permintaan
+        const studentDataRequest = axios.post(
           "http://localhost:3000/api/v1/studentData/create",
           formDataToSend,
           config
         );
 
-        console.log("Response status:", res.status);
-        console.log("Response data:", res.data);
+        const scoreData = {
+          health_score: formData.healthScore, // Pastikan ini angka yang valid
+          interview_score: formData.interviewScore, // Pastikan ini angka yang valid
+        };
 
-        if (res.status === 200) {
+        // Pastikan header Content-Type sesuai dengan format yang diharapkan
+        const finalScoreRequest = axios.post(
+          "http://localhost:3000/api/v1/finalScore",
+          scoreData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const [studentDataResponse, finalScoreResponse] = await Promise.all([
+          studentDataRequest,
+          finalScoreRequest,
+        ]);
+
+        console.log("Status respons studentData:", studentDataResponse.status);
+        console.log("Data respons studentData:", studentDataResponse.data);
+
+        if (studentDataResponse.status === 200) {
           toast.success("Berhasil menambahkan data", { delay: 800 });
-          navigate("/getData"); // Pindah ke halaman getData setelah sukses
-          localStorage.removeItem("formData"); // Hapus data dari localStorage setelah sukses
+          navigate("/getData");
+          localStorage.removeItem("formData");
         }
+
+        console.log("Status respons finalScore:", finalScoreResponse.status);
+        console.log("Data respons finalScore:", finalScoreResponse.data);
       } catch (error) {
         toast.error("Gagal menambahkan data", { delay: 800 });
+        console.error(
+          "Terjadi kesalahan:",
+          error.response ? error.response.data : error.message
+        );
       }
     } else {
       alert("Data belum lengkap");
@@ -216,6 +378,7 @@ function Form() {
             formData={formData}
             setFormData={setFormData}
             handleInput={handleInput}
+            handleCheckboxChange={handleCheckboxChange}
             error={error}
           />
         );

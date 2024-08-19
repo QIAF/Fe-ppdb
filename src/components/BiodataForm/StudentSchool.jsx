@@ -1,8 +1,49 @@
 import React from "react";
-import { Input } from "../Ui/Form/Input";
+// import { Input } from "../Ui/Form/Input";
 import { ErrMsg } from "../Error/ErrMsg";
+import "./Form.css";
+import { Input } from "../Ui/Form/Input";
 
-function StudentSchool({ handleInput, formData, error }) {
+function StudentSchool({ handleInput, formData, error, handleCheckboxChange }) {
+  const majorChoices = [
+    {
+      id: "light_vehicle_engineer",
+      value: "light_vehicle_engineer",
+      label: "Teknik Kendaraan Ringan",
+    },
+    { id: "mechanical_engineer", label: "Teknik Mesin" },
+    {
+      id: "electronics_engineer",
+      value: "electronics_engineer",
+      label: "Teknik Elektronika",
+    },
+    {
+      id: "electrical_engineer",
+      value: "electrical_engineer",
+      label: "Teknik Ketenagalistrikan",
+    },
+    {
+      id: "computer_network_engineer",
+      value: "computer_network_engineer",
+      label: "Teknik Komputer Dan Jaringan",
+    },
+    {
+      id: "motorcycle_engineer",
+      value: "motorcycle_engineer",
+      label: "Teknik Sepeda Motor",
+    },
+    {
+      id: "modeling_design",
+      value: "modeling_design",
+      label: "Desain Permodelan Dan Informasi Bangunan",
+    },
+    {
+      id: "pharmaceutical_engineering",
+      value: "pharmaceutical_engineering",
+      label: "Teknologi Farmasi",
+    },
+  ];
+
   return (
     <div className="flex-column mx-4 justify-content-center">
       <div className="justify-content-center">
@@ -92,23 +133,58 @@ function StudentSchool({ handleInput, formData, error }) {
                 </div>
                 <div className="row mb-3">
                   <label
-                    htmlFor="inputmajor_choice"
+                    htmlFor="inputijazah_number"
                     className="col col-form-label"
                   >
-                    Pilihan Bidang Keahian
+                    Nomor Ijazah
                   </label>
                   <div className="col-sm-8">
                     <Input
-                      type={"Number"}
+                      type={"number"}
                       className={"form-control"}
-                      id={"major_choice"}
-                      name="major_choice"
-                      value={formData.major_choice}
+                      id={"ijazah_number"}
+                      name="ijazah_number"
+                      value={formData.ijazah_number}
                       onChange={handleInput}
                     />
+                    <ErrMsg msg={error.ijazah_number} />
+                  </div>
+                </div>
+
+                <div className="row mb-3">
+                  <label
+                    htmlFor="inputmajor_choice"
+                    className="col-form-label col-sm-4"
+                  >
+                    Pilihan Bidang Keahlian
+                  </label>
+                  <div className="col-sm-8">
+                    <div className="row">
+                      {majorChoices.map(({ id, label }) => (
+                        <div key={id} className="col-md-4">
+                          <div className="form-check">
+                            <Input
+                              className="form-check-input"
+                              type="checkbox"
+                              id={id}
+                              name="major_choice"
+                              value={id}
+                              checked={formData.major_choice
+                                .split(",")
+                                .includes(id)}
+                              onChange={handleCheckboxChange}
+                            />
+                            <label className="form-check-label" htmlFor={id}>
+                              {label}
+                            </label>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                     <ErrMsg msg={error.major_choice} />
                   </div>
                 </div>
+
                 <div className="row mb-3">
                   <label htmlFor="nisn" className="col col-form-label">
                     NISN

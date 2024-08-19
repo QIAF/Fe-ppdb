@@ -39,19 +39,6 @@ function NavbarForm() {
                 // aria-current="page"
                 onClick={() => handleClick("/")}
               >
-                <img
-                  src={ImgGreen}
-                  style={{ maxWidth: "40px" }}
-                  alt="Chat AI"
-                />
-              </a>
-            </li>
-            <li>
-              <a
-                className="home"
-                // aria-current="page"
-                onClick={() => handleClick("/")}
-              >
                 Home
               </a>
             </li>
