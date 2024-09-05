@@ -28,10 +28,17 @@ function Faq() {
                 data-bs-parent="#accordionFlushExample"
               >
                 <div className="accordion-body">
-                  Placeholder content for this accordion, which is intended to
-                  demonstrate the
-                  <code>.accordion-flush</code> class. This is the first item's
-                  accordion body.
+                  Ya, siswa dari luar Yogyakarta tetap memiliki kesempatan untuk
+                  lolos seleksi di SMK 3 Muhammadiyah Yogyakarta. Kesempatan
+                  untuk diterima biasanya tidak terbatas pada asal daerah siswa,
+                  tetapi lebih bergantung pada kualifikasi, prestasi akademik,
+                  kemampuan, dan kesiapan siswa dalam mengikuti seleksi.
+                  Faktor-faktor lain seperti nilai ujian, hasil tes seleksi,
+                  wawancara, serta kesesuaian dengan nilai-nilai dan visi
+                  sekolah juga akan menjadi pertimbangan dalam penerimaan siswa.
+                  Oleh karena itu, siswa dari luar Yogyakarta yang memenuhi
+                  kriteria dan memiliki motivasi yang kuat tetap memiliki
+                  peluang untuk diterima di SMK 3 Muhammadiyah Yogyakarta.
                 </div>
               </div>
             </div>
@@ -55,11 +62,12 @@ function Faq() {
                 data-bs-parent="#accordionFlushExample"
               >
                 <div className="accordion-body">
-                  Placeholder content for this accordion, which is intended to
-                  demonstrate the
-                  <code>.accordion-flush</code> class. This is the second item's
-                  accordion body. Let's imagine this being filled with some
-                  actual content.
+                  SMK Muhammadiyah 3 Yogyakarta memiliki beberapa akun media
+                  sosial yang aktif digunakan untuk berbagi informasi mengenai
+                  kegiatan sekolah, pengumuman, dan hal-hal lainnya yang
+                  berkaitan dengan sekolah. Anda dapat mengikuti sekolah ini di
+                  platform seperti Instagram dan Facebook untuk mendapatkan
+                  update terbaru.
                 </div>
               </div>
             </div>
@@ -83,13 +91,13 @@ function Faq() {
                 data-bs-parent="#accordionFlushExample"
               >
                 <div className="accordion-body">
-                  Placeholder content for this accordion, which is intended to
-                  demonstrate the
-                  <code>.accordion-flush</code> class. This is the third item's
-                  accordion body. Nothing more exciting happening here in terms
-                  of content, but just filling up the space to make it look, at
-                  least at first glance, a bit more representative of how this
-                  would look in a real-world application.
+                  Ya, SMK 3 Muhammadiyah Yogyakarta menyediakan beasiswa bagi
+                  siswa yang berprestasi. Sekolah ini berkomitmen untuk
+                  mendukung siswa yang memiliki potensi akademik tinggi dan
+                  kemampuan khusus melalui berbagai program beasiswa. Selain
+                  itu, siswa yang memiliki prestasi di bidang akademik atau
+                  non-akademik berpeluang untuk mendapatkan beasiswa guna
+                  meringankan biaya pendidikan mereka​
                 </div>
               </div>
             </div>

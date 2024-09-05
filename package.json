@@ -12,21 +12,26 @@
   "dependencies": {
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
+    "dompurify": "^3.1.6",
     "http-error": "^0.0.6",
     "jquery": "^3.7.1",
     "js-cookie": "^3.0.5",
+    "jwt-decode": "^4.0.0",
     "owl.carousel": "^2.3.4",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.2",
     "react-chatbot": "^0.0.1",
     "react-dom": "^18.3.1",
     "react-fast-marquee": "^1.6.4",
+    "react-markdown": "^9.0.1",
     "react-multi-carousel": "^2.8.5",
     "react-owl-carousel": "^2.3.3",
     "react-router": "^6.23.1",
     "react-router-dom": "^6.23.1",
+    "react-to-print": "^2.15.1",
     "react-toastify": "^10.0.5",
-    "react-youtube": "^10.1.0"
+    "react-youtube": "^10.1.0",
+    "typescript-cookie": "^1.0.6"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

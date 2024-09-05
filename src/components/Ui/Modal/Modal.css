@@ -4,7 +4,7 @@
     gap: 2rem;
     background: #FFF;
     box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.10);
-    max-width: 17.9375rem;
+    width: 100rem;
 }
 
 .wrapper-modal {

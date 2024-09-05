@@ -1,0 +1,19 @@
+.title-student-data{
+    color: #816503;
+}
+
+.custom-margin-left{
+    margin-left: 70px;
+}
+
+.box-content {
+    background: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 8px;
+    border: black;
+    max-height: 2000px;
+    margin: 5rem auto 8.1rem auto;
+    max-width: 750px;
+    height: fit-content;
+    margin-top: 30px;
+}

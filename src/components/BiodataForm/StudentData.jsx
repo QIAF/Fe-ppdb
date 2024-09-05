@@ -1,8 +1,8 @@
 import React from "react";
-import {Input} from "../Ui/Form/Input";
+import { Input } from "../Ui/Form/Input";
 import { ErrMsg } from "../Error/ErrMsg";
 
-function StudentData({ formData, handleInput, error , handleChange}) {
+function StudentData({ formData, handleInput, error, handleChange }) {
   return (
     <div className="flex-column mx-4 justify-content-center">
       <div className="justify-content-center">
@@ -15,8 +15,11 @@ function StudentData({ formData, handleInput, error , handleChange}) {
             <div className="body center ">
               <div className="student-data">
                 <div className="row mb-3">
-                  <label htmlFor="inputFullName" className="col col-form-label">
-                    Nama Lengkap
+                  <label htmlFor="student_name" className="col col-form-label">
+                    Nama Lengkap{" "}
+                    {!formData.student_name && (
+                      <span className="required">*</span>
+                    )}
                   </label>
                   <div className="col-sm-8 ">
                     <Input
@@ -32,49 +35,81 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                 </div>
                 <div className="row mb-3">
                   <label
-                    htmlFor="student_gender"
+                    htmlFor="student_card_number"
                     className="col col-form-label"
                   >
-                    Jenis kelamin
+                    Nomor KK Siswa{" "}
+                    {!formData.student_card_number && (
+                      <span className="required">*</span>
+                    )}
                   </label>
-                  <div className="col">
+                  <div className="col-sm-8 ">
                     <Input
-                      type={"radio"}
-                      id={"Laki-Laki"}
-                      className={"form-check-input"}
-                      name={"student_gender"}
-                      value={"Laki-Laki"}
-                      checked={formData.student_gender === "Laki-Laki"}
-                      onChange={handleChange}
-                      // defaultChecked={formData.student_gender === "Laki-Laki"}
+                      type={"number"}
+                      className={"form-control"}
+                      id={"student_card_number"}
+                      name="student_card_number"
+                      value={formData.student_card_number}
+                      onChange={handleInput}
                     />
-                    <label className="form-check-label" htmlFor="inlineMale">
-                      {" "}
-                      &nbsp; Laki-laki
-                    </label>
-                  </div>
-                  <div className="col">
-                    <Input
-                      type={"radio"}
-                      id={"Perempuan"}
-                      className={"form-check-input"}
-                      name={"student_gender"}
-                      value={"Perempuan"}
-                      checked={formData.student_gender === "Perempuan"}
-                      onChange={handleChange}
-                      // defaultChecked={formData.student_gender === "Perempuan"}
-                    />
-                    <label className="form-check-label" htmlFor="inlineFemale">
-                      &nbsp; Perempuan
-                    </label>
+                    <ErrMsg msg={error.student_card_number} />
                   </div>
                 </div>
                 <div className="row mb-3">
                   <label
-                    htmlFor="inputplace_birth"
+                    htmlFor="family_card_number"
                     className="col col-form-label"
                   >
-                    Tempat lahir
+                    NIK
+                    {!formData.family_card_number && (
+                      <span className="required">*</span>
+                    )}
+                  </label>
+                  <div className="col-sm-8 ">
+                    <Input
+                      type={"number"}
+                      className={"form-control"}
+                      id={"family_card_number"}
+                      name="family_card_number"
+                      value={formData.family_card_number}
+                      onChange={handleInput}
+                    />
+                    <ErrMsg msg={error.family_card_number} />
+                  </div>
+                </div>
+                <div className="row mb-3">
+                  <label
+                    htmlFor="student_gender"
+                    className="col col-form-label"
+                  >
+                    Jenis kelamin{" "}
+                    {!formData.student_gender && (
+                      <span className="required">*</span>
+                    )}
+                  </label>
+                  <div className="col-sm-8">
+                    <select
+                      className="form-select"
+                      aria-label="Default select example"
+                      id="student_gender"
+                      name="student_gender"
+                      value={formData.student_gender}
+                      onChange={handleInput}
+                    >
+                      <option value="">Pilih salah satu</option>{" "}
+                      <option value="Laki-laki">Laki-laki</option>
+                      <option value="Perempuan">Perempuan</option>
+                    </select>
+
+                    <ErrMsg msg={error.student_gender} />
+                  </div>
+                </div>
+                <div className="row mb-3">
+                  <label htmlFor="place_birth" className="col col-form-label">
+                    Tempat lahir{" "}
+                    {!formData.place_birth && (
+                      <span className="required">*</span>
+                    )}
                   </label>
                   <div className="col-sm-8">
                     <textarea
@@ -90,11 +125,11 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                   </div>
                 </div>
                 <div className="row mb-3">
-                  <label
-                    htmlFor="inputdate_birth"
-                    className="col col-form-label"
-                  >
+                  <label htmlFor="date_birth" className="col col-form-label">
                     Tanggal lahir
+                    {!formData.date_birth && (
+                      <span className="required">*</span>
+                    )}
                   </label>
                   <div className="col-sm-8">
                     <Input
@@ -105,15 +140,18 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                       value={formData.date_birth}
                       onChange={handleInput}
                     />
-                     <ErrMsg msg={error.date_birthh} />
+                    <ErrMsg msg={error.date_birth} />
                   </div>
                 </div>
                 <div className="row mb-3">
                   <label
-                    htmlFor="inputstudent_address"
+                    htmlFor="student_address"
                     className="col col-form-label"
                   >
                     Alamat Asal
+                    {!formData.student_address && (
+                      <span className="required">*</span>
+                    )}
                   </label>
                   <div className="col-sm-8">
                     <textarea
@@ -129,48 +167,95 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                 </div>
                 <div className="row mb-3">
                   <label
-                    htmlFor="inputstudent_distance"
+                    htmlFor="student_distance"
                     className="col col-form-label"
                   >
-                    Jarak rumah ke sekolah
+                    Alamat di Yogyakarta
+                    {!formData.student_address_now && (
+                      <span className="required">*</span>
+                    )}
                   </label>
                   <div className="col-sm-8">
                     <Input
                       type={"text"}
                       className={"form-control"}
-                      id={"student_distance"}
-                      name={"student_distance"}
-                      value={formData.student_distance}
+                      id={"student_address_now"}
+                      name="student_address_now"
+                      value={formData.student_address_now}
                       onChange={handleInput}
                     />
+                    <ErrMsg msg={error.student_address_now} />
+                  </div>
+                </div>
+                <div className="row mb-3">
+                  <label
+                    htmlFor="student_distance"
+                    className="col col-form-label"
+                  >
+                    Jarak dari rumah ke SMK 3 Muhammadiyah Yogyakarta
+                    {!formData.student_distance && (
+                      <span className="required">*</span>
+                    )}
+                  </label>
+                  <div className="col-sm-8">
+                    <select
+                      className="form-select"
+                      aria-label="Default select example"
+                      id="student_distance"
+                      name="student_distance"
+                      value={!formData.student_distance}
+                      onChange={handleInput}
+                    >
+                      <option value="">Pilih salah satu</option>{" "}
+                      <option value="≤ 1 KM">≤ 1 KM</option>
+                      <option value="≤ 2 KM">≤ 2 KM</option>
+                      <option value="≤ 3 KM">≤ 3 KM</option>
+                      <option value="≤ 4 KM">≤ 4 KM</option>
+                      <option value="≥ 4 KM">≥ 4 KM</option>
+                    </select>
                     <ErrMsg msg={error.student_distance} />
                   </div>
                 </div>
                 <div className="row mb-3">
                   <label
-                    htmlFor="inputStudent_religion"
+                    htmlFor="student_religion"
                     className="col col-form-label"
                   >
                     Agama
+                    {!formData.student_religion && (
+                      <span className="required">*</span>
+                    )}
                   </label>
                   <div className="col-sm-8">
-                    <Input
-                      type={"text"}
-                      className={"form-control"}
-                      id={"student_religion"}
+                    <select
+                      className="form-select"
+                      aria-label="Default select example"
+                      id="student_religion"
                       name="student_religion"
                       value={formData.student_religion}
                       onChange={handleInput}
-                    />
+                    >
+                      <option value="">Pilih salah satu</option>{" "}
+                      <option value="Islam">Islam</option>
+                      <option value="Perempuan">Kristen</option>
+                      <option value="Katolik">Katolik</option>
+                      <option value="Hindu">Hindu</option>
+                      <option value="Budha">Budha</option>
+                      <option value="Khonghucu">Khonghucu</option>
+                    </select>
+
                     <ErrMsg msg={error.student_religion} />
                   </div>
                 </div>
                 <div className="row mb-3">
                   <label
-                    htmlFor="inputstudent_blood_type"
+                    htmlFor="student_blood_type"
                     className="col col-form-label"
                   >
-                    Golongan Darah
+                    Golongan Darah{" "}
+                    {!formData.student_blood_type && (
+                      <span className="required">*</span>
+                    )}
                   </label>
                   <div className="col-sm-8">
                     <Input
@@ -185,8 +270,14 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                   </div>
                 </div>
                 <div className="row mb-3">
-                  <label htmlFor="inputHeight" className="col col-form-label">
+                  <label
+                    htmlFor="student_height"
+                    className="col col-form-label"
+                  >
                     Tinggi Badan
+                    {!formData.student_weight && (
+                      <span className="required">*</span>
+                    )}
                   </label>
                   <div className="col-sm-8">
                     <Input
@@ -201,8 +292,14 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                   </div>
                 </div>
                 <div className="row mb-3">
-                  <label htmlFor="inputWeight" className="col col-form-label">
-                    Berat Badan
+                  <label
+                    htmlFor="student_weight"
+                    className="col col-form-label"
+                  >
+                    Berat Badan{" "}
+                    {!formData.student_height && (
+                      <span className="required">*</span>
+                    )}
                   </label>
                   <div className="col-sm-8">
                     <Input
@@ -217,8 +314,11 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                   </div>
                 </div>
                 <div className="row mb-3">
-                  <label htmlFor="inputChild" className="col col-form-label">
+                  <label htmlFor="student_child" className="col col-form-label">
                     Anak ke-
+                    {!formData.student_child && (
+                      <span className="required">*</span>
+                    )}
                   </label>
                   <div className="col-sm-8">
                     <Input
@@ -234,29 +334,37 @@ function StudentData({ formData, handleInput, error , handleChange}) {
                 </div>
                 <div className="row mb-3">
                   <label
-                    htmlFor="inputstudent_kps"
+                    htmlFor="student_gender"
                     className="col col-form-label"
                   >
-                    student_kps
+                    KPS,PKH/PIP/KMS Kota{" "}
+                    {!formData.student_kps && (
+                      <span className="required">*</span>
+                    )}
                   </label>
                   <div className="col-sm-8">
-                    <Input
-                      type={"text"}
-                      className={"form-control"}
-                      id={"student_kps"}
-                      name={"student_kps"}
-                      value={formData.student_kps}
-                      onChange={handleInput}
-                    />
+                    <select
+                      className="form-select"
+                      aria-label="Default select example"
+                      id="student_kps"
+                      name="student_kps"
+                      value={formData.student_kps} // Menyinkronkan nilai select dengan formData
+                      onChange={handleInput} // Memperbarui formData saat pilihan berubah
+                    >
+                      <option value="">Pilih salah satu</option>{" "}
+                      <option value="Ya">Tidak</option>
+                      <option value="Tidak">Ya</option>
+                    </select>
+
                     <ErrMsg msg={error.student_kps} />
                   </div>
                 </div>
                 <div className="row mb-3">
-                  <label
-                    htmlFor="inputstudent_hobby"
-                    className="col col-form-label"
-                  >
+                  <label htmlFor="student_hobby" className="col col-form-label">
                     Hobi
+                    {!formData.student_hobby && (
+                      <span className="required">*</span>
+                    )}
                   </label>
                   <div className="col-sm-8">
                     <Input

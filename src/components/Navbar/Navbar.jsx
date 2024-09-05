@@ -1,19 +1,14 @@
 import { useLocation, useNavigate } from "react-router";
-import Modal from "../Ui/Modal/Modal";
 import { useState } from "react";
 import { Login } from "../../pages/Login/Login";
-import "./Navbar.css"
+import ImgLogo from "../../assets/images/img-logo-white.png";
+import "./Navbar.css";
 
 function Navbar() {
   const [modalLogin, setmodalLogin] = useState(false);
   const navigate = useNavigate();
   function handleClick(route) {
-    if (route === "landingPage") {
-      navigate("/landingPage");
-    } else if (route === "MajorPage") {
-      navigate("/MajorPage");
-    } else {
-    }
+    navigate(route);
   }
 
   const location = useLocation();
@@ -21,9 +16,11 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg ">
       <div className="container-fluid fixed">
-        <a className="navbar-brand" href="#">
-          Navbar
-        </a>
+        <img
+          src={ImgLogo}
+          style={{ maxWidth: "250px", width: "100%" }}
+          alt="Logo"
+        />
         <button
           className="navbar-toggler"
           type="button"
@@ -36,46 +33,32 @@ function Navbar() {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="menu-items-desktop-v2 navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
+          <ul
+            id="navbar"
+            className="menu-items-desktop-v2 navbar-nav me-auto mb-2 mb-lg-0 "
+          >
+            <li>
               <a
-                className="menu-home-desktop-v2 active"
-                aria-current="page"
-                onClick={() => handleClick("landingPage")}
+                className="active"
+                // aria-current="page"
+                onClick={() => handleClick("/")}
               >
                 Home
               </a>
             </li>
-            <li className="nav-item">
-              <a
-                className="menu-bidang-keahlian-desktop-v2"
-                onClick={() => handleClick("MajorPage")}
-              >
+            <li>
+              <a onClick={() => handleClick("/bidangKeahlian")}>
                 Bidang Keahlian
               </a>
             </li>
-            <li className="nav-item">
-              <a
-                className="menu-alur-pendaftaran-desktop-v2"
-                href="#alur-daftar"
-              >
-                Alur Pendaftaran
-              </a>
+            <li>
+              <a href="#alur-daftar">Alur Pendaftaran</a>
             </li>
-            <li className="nav-item">
-              <a
-                href="#"
-                className="menu-pendaftaran-v2 w-button"onClick={() => setmodalLogin(true)}
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-              >
-                Pendaftaran
-              </a>
+            <li>
+              <a onClick={() => setmodalLogin(true)}>Pendaftaran</a>
             </li>
           </ul>
-          {modalLogin && (
-                  <Login title={"Sebelum lanjut, login dulu yuk !"} />
-                )}
+          {modalLogin && <Login title={"Sebelum lanjut, login dulu yuk !"} />}
         </div>
       </div>
     </nav>
