@@ -22,11 +22,12 @@ function Register() {
 
   const [form, setForm] = useState({
     full_name: "",
-    age: "",
-    email: "",
+    user_number: "",
     password: "",
     confirm_password: "",
   });
+
+  console.log("data", form);
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -37,11 +38,19 @@ function Register() {
     validateRegister(form, setError);
   };
 
-  const handlePostForm = async (data) => {
-    const formRegister = dataRegister(data);
+  const handlePostForm = async () => {
+    const isValid = validateRegister(form, setError);
+    if (!isValid) {
+      // Jika tidak valid, tampilkan pesan kesalahan dan berhenti
+      toast.error("Harap perbaiki kesalahan di data sebelum melanjutkan.", {
+        delay: 800,
+      });
+      return;
+    }
+    const formRegister = dataRegister(form);
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/v1/auth/register",
+        "https://be-ppdb-online-update.vercel.app/api/v1/auth/register",
         formRegister
       );
 
@@ -53,9 +62,12 @@ function Register() {
         toast.error("Terjadi kesalahan saat login", { delay: 800 });
       }
     } catch (error) {
-      toast.error("Gagal Register, silahkan register kembali", {
-        delay: 800,
-      });
+      toast.error(
+        "Harap masukkan data dengan benar, kemudian coba registrasi ulang.",
+        {
+          delay: 800,
+        }
+      );
     }
   };
 
@@ -67,7 +79,6 @@ function Register() {
           id="exampleModal"
           tabIndex="-1"
           aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
           style={{ display: "block", backgroundColor: "rgba(0,0,0,0.5)" }}
         >
           <div className="modal-dialog">
@@ -93,9 +104,9 @@ function Register() {
                   <Input
                     id="full_name"
                     name="full_name"
-                    type={"full_name"}
-                    className={"form-control"}
-                    placeholder={"Masukkan nama lengkap"}
+                    type="text" // Gunakan tipe HTML yang valid
+                    className="form-control"
+                    placeholder="Masukkan nama lengkap"
                     value={form.full_name}
                     onChange={handleInput}
                   />
@@ -103,37 +114,25 @@ function Register() {
                 </div>
                 <div className="mb-3">
                   <Input
-                    id="age"
-                    name="age"
-                    type={"age"}
-                    className={"form-control"}
-                    placeholder={"Masukkan umur"}
-                    value={form.age}
+                    id="user_number"
+                    name="user_number"
+                    type="text" // Gunakan tipe HTML yang valid
+                    className="form-control"
+                    placeholder="Masukkan NISN anda"
+                    value={form.user_number}
                     onChange={handleInput}
                   />
-                  <ErrMsg msg={error.email} />
+                  <ErrMsg msg={error.user_number} />
                 </div>
-                <div className="mb-3">
-                  <Input
-                    id="email"
-                    name="email"
-                    className={"form-control"}
-                    type={"email"}
-                    value={form.email}
-                    onChange={handleInput}
-                    placeholder={"Masukkan email anda"}
-                  />
-                </div>
-                <ErrMsg msg={error.password} />
                 <div className="mb-3">
                   <Input
                     id="password"
                     name="password"
-                    className={"form-control"}
-                    type={"password"}
+                    type="password"
+                    className="form-control"
+                    placeholder="Masukkan password anda"
                     value={form.password}
                     onChange={handleInput}
-                    placeholder={"Masukkan password anda"}
                   />
                   <ErrMsg msg={error.password} />
                 </div>
@@ -141,13 +140,13 @@ function Register() {
                   <Input
                     id="confirm_password"
                     name="confirm_password"
-                    className={"form-control"}
-                    type={"password"}
+                    type="password"
+                    className="form-control"
+                    placeholder="Konfirmasi password"
                     value={form.confirm_password}
                     onChange={handleInput}
-                    placeholder={"Confirm password"}
                   />
-                  <ErrMsg msg={error.password} />
+                  <ErrMsg msg={error.confirm_password} />
                 </div>
               </div>
               <div className="modal-footer">
@@ -156,6 +155,7 @@ function Register() {
                     className="btn btn-primary"
                     type="button"
                     onClick={handlePostForm}
+                    // error={error}
                   >
                     Register
                   </button>
@@ -166,7 +166,7 @@ function Register() {
         </div>
       )}
       {modalLoginOpen && (
-        <Login title={"Silahkan Login"} onClose={handleRegisterModal} />
+        <Login title="Silahkan Login" onClose={handleRegisterModal} />
       )}
     </>
   );

@@ -7,27 +7,46 @@ function StudentScoreReport({ handleInput, formData, error }) {
   return (
     <div className="flex-column mx-4 justify-content-center">
       <div className="justify-content-center">
-        <div className="table-responsive container ">
+        <div className="table table-striped align-middle container">
           <div className="center">
             <div className="header">
               <h5 style={{ color: "#816503" }}>
-                Masukkan nilai raport semester 1-5
+                Masukkan nilai raport Sster 1-5
               </h5>
             </div>
             <br />
-            <div className="body center ">
-              <table style={{ width: "100%" }} className="table">
+            <div className="body center table-responsive">
+              <table style={{ width: "100%" }}>
                 <tbody className="m-auto">
+                  <tr className="text-center">
+                    <td>
+                      <b>Pelajaran</b>
+                    </td>
+                    <td colSpan={2}>
+                      <b>Kelas 7 </b>
+                    </td>
+                    <td colSpan={2}>
+                      <b>Kelas 8</b>
+                    </td>
+                    <td>
+                      <b>Kelas 9</b>
+                    </td>
+                  </tr>
                   <tr>
                     <td className="text-center">
-                      <b>Matematika</b>
+                      <b>
+                        Matematika
+                        {!formData.mathematics5 && (
+                          <span className="required">*</span>
+                        )}
+                      </b>
                     </td>
                     <td>
                       <Input
                         type={"number"}
                         name={"mathematics1"}
                         className={"form-control"}
-                        placeholder={"sem 1"}
+                        placeholder={"S1"}
                         value={formData.mathematics1}
                         onChange={handleInput}
                       />
@@ -39,7 +58,7 @@ function StudentScoreReport({ handleInput, formData, error }) {
                         type={"number"}
                         name={"mathematics2"}
                         className={"form-control"}
-                        placeholder={"sem 2"}
+                        placeholder={"S2"}
                         value={formData.mathematics2}
                         onChange={handleInput}
                       />
@@ -50,7 +69,7 @@ function StudentScoreReport({ handleInput, formData, error }) {
                         type={"number"}
                         name={"mathematics3"}
                         className={"form-control"}
-                        placeholder={"sem 3"}
+                        placeholder={"S3"}
                         value={formData.mathematics3}
                         onChange={handleInput}
                       />
@@ -61,7 +80,7 @@ function StudentScoreReport({ handleInput, formData, error }) {
                         type={"number"}
                         name={"mathematics4"}
                         className={"form-control"}
-                        placeholder={"sem 4"}
+                        placeholder={"S4"}
                         value={formData.mathematics4}
                         onChange={handleInput}
                       />
@@ -72,7 +91,7 @@ function StudentScoreReport({ handleInput, formData, error }) {
                         type={"number"}
                         name={"mathematics5"}
                         className={"form-control"}
-                        placeholder={"sem 5"}
+                        placeholder={"S5"}
                         value={formData.mathematics5}
                         onChange={handleInput}
                       />
@@ -81,7 +100,12 @@ function StudentScoreReport({ handleInput, formData, error }) {
                   </tr>
                   <tr>
                     <td className="text-center">
-                      <b>IPA</b>
+                      <b>
+                        IPA
+                        {!formData.science5 && (
+                          <span className="required">*</span>
+                        )}
+                      </b>
                     </td>
                     <td>
                       <Input
@@ -136,7 +160,12 @@ function StudentScoreReport({ handleInput, formData, error }) {
                   </tr>
                   <tr>
                     <td className="text-center">
-                      <b>Bahasa Indonesia</b>
+                      <b>
+                        Bahasa Indonesia
+                        {!formData.indonesian5 && (
+                          <span className="required">*</span>
+                        )}
+                      </b>
                     </td>
                     <td>
                       <Input
@@ -191,7 +220,12 @@ function StudentScoreReport({ handleInput, formData, error }) {
                   </tr>
                   <tr>
                     <td className="text-center">
-                      <b>Bahasa Inggris</b>
+                      <b>
+                        Bahasa Inggris
+                        {!formData.english5 && (
+                          <span className="required">*</span>
+                        )}
+                      </b>
                     </td>
 
                     <td>

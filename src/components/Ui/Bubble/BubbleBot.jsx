@@ -28,7 +28,7 @@ function BubbleBot({ text, author, time }) {
   return (
     <div
       className={`d-flex flex-column ${
-        author === "user" ? "align-self-end" : "align-self-start"
+        author === "user" ? "align-self-center" : "align-self-start"
       }`}
     >
       <div

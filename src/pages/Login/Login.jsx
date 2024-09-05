@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 import Register from "./Register";
+import Cookies from "js-cookie";
+import { Button } from "../../components/Ui/Button/Button";
 
 export const Login = ({ title, props }) => {
   const { id } = useParams();
@@ -42,10 +44,11 @@ export const Login = ({ title, props }) => {
 
   const handlePostForm = async (data) => {
     const formLogin = loginData(data);
+    console.log(formLogin);
 
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/v1/auth/login",
+        "https://be-ppdb-online-update.vercel.app/api/v1/auth/login",
         formLogin,
         {
           headers: {
@@ -53,43 +56,39 @@ export const Login = ({ title, props }) => {
           },
         }
       );
+
       if (res.status === 200) {
         const { token } = res.data;
 
         if (token) {
-          localStorage.setItem("token", token); // Simpan token ke localStorage
-          console.log("Token berhasil disimpan:", token);
+          // Simpan token ke dalam cookie
+          Cookies.set("token", token, { expires: 7, path: "/" });
+          console.log("Token berhasil disimpan di cookie:", token);
 
           const config = {
             headers: {
               Authorization: `Bearer ${token}`, // Sertakan token dalam header Authorization
             },
           };
+
           try {
-            // Mengambil data siswa dari server
             const resStudent = await axios.get(
-              `http://localhost:3000/api/v1/studentData/${id}`,
+              `https://be-ppdb-online-update.vercel.app/api/v1/studentData/${id}`,
               config
             );
+            console.log("Data Siswa:", resStudent.data);
 
-            console.log("APAAA DATANYA:", resStudent.data);
-
-            // Memeriksa apakah data siswa ada
             const studentData = resStudent.data;
-
             if (studentData && studentData.data) {
-              navigate("getData");
-              toast.success("Berhasil melakukan login, anda telah mendaftar", {
+              navigate("/article");
+              toast.success("Berhasil login, Anda telah mendaftar", {
                 delay: 800,
               });
             }
           } catch (error) {
-            console.error(
-              "Gagal mendapatkan user data, masukkan data terlebih dahulu",
-              error
-            );
-            navigate("formData");
-            toast.success("Berhasil melakukan login", {
+            console.error("Error saat mengambil data siswa:", error);
+            navigate("/formData");
+            toast.success("Berhasil login", {
               delay: 800,
             });
           }
@@ -98,7 +97,7 @@ export const Login = ({ title, props }) => {
           toast.error("Token tidak ditemukan dalam respons.", { delay: 800 });
         }
       } else {
-        console.error("Status respons tidak 200:", res.status);
+        console.error("Status respons bukan 200:", res.status);
         toast.error("Terjadi kesalahan saat login", { delay: 800 });
       }
     } catch (error) {
@@ -106,12 +105,12 @@ export const Login = ({ title, props }) => {
         console.error("Error response:", error.response);
         toast.error("Email atau password tidak valid", { delay: 800 });
       } else if (error.request) {
-        console.error("No response received:", error.request);
+        console.error("Tidak ada respons dari server:", error.request);
         toast.error("Tidak ada respons dari server. Silakan coba lagi nanti.", {
           delay: 800,
         });
       } else {
-        console.error("Error occurred:", error.message);
+        console.error("Terjadi kesalahan:", error.message);
         toast.error("Terjadi kesalahan. Silakan coba lagi.", { delay: 800 });
       }
     }
@@ -132,7 +131,7 @@ export const Login = ({ title, props }) => {
           id="exampleModal"
           tabIndex="-1"
           aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
+          // aria-hidden="true"
           style={{ display: "block", backgroundColor: "rgba(0,0,0,0.5)" }}
         >
           <div className="modal-dialog">
@@ -145,35 +144,35 @@ export const Login = ({ title, props }) => {
                 >
                   {title}
                 </h1>
-                <button
+                <Button
                   type="button"
                   className="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Close"
                   onClick={() => setModalLoginOpen(false)}
-                ></button>
+                ></Button>
               </div>
               <div className="modal-body">
                 <div className="mb-3">
                   <Input
-                    type={"email"}
-                    className={"form-control"}
-                    placeholder={"Masukkan email anda"}
-                    id="email"
-                    name="email"
-                    value={form.email}
+                    type="text"
+                    className="form-control"
+                    placeholder="Masukkan nisn anda"
+                    id="user_number"
+                    name="user_number"
+                    value={form.user_number || ""}
                     onChange={handleInput}
                   />
-                  <ErrMsg msg={error.email} />
+                  <ErrMsg msg={error.user_number} />
                 </div>
                 <div className="mb-3">
                   <Input
                     type="password"
-                    className={"form-control"}
-                    placeholder={"Masukkan password anda"}
                     id="password"
                     name="password"
-                    value={form.password}
+                    className="form-control"
+                    placeholder="Masukkan password anda"
+                    value={form.password || ""}
                     onChange={handleInput}
                   />
                 </div>
@@ -181,13 +180,13 @@ export const Login = ({ title, props }) => {
               </div>
               <div className="modal-footer">
                 <div className="d-grid gap-2 col-6 mx-auto">
-                  <button
+                  <Button
                     className="btn btn-primary"
                     type="submit"
                     onClick={() => handlePostForm(form)}
                   >
                     Login
-                  </button>
+                  </Button>
                   <button
                     className="btn btn-primary"
                     type="button"

@@ -16,7 +16,11 @@ function NavbarMajor() {
   return (
     <nav className="navbar navbar-major navbar-expand-lg ">
       <div className="container-fluid fixed">
-        <img src={ImgLogo} style={{}} />
+        <img
+          src={ImgLogo}
+          style={{ maxWidth: "200px", width: "100%" }}
+          alt="Logo"
+        />
         <button
           className="navbar-toggler"
           type="button"
@@ -43,10 +47,7 @@ function NavbarMajor() {
               </a>
             </li>
             <li>
-              <a
-                className="major-page active"
-                onClick={() => handleClick("")}
-              >
+              <a className="major-page active" onClick={() => handleClick("")}>
                 Bidang Keahlian
               </a>
             </li>

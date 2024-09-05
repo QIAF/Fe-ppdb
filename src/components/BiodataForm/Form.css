@@ -1,13 +1,5 @@
-.box-content {
-    background: #FFFFFF;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border-radius: 8px;
-    border: black;
-    max-height: 2000px;
-    margin: 5rem auto 8.1rem auto;
-    max-width: 750px;
-    height: fit-content;
-    margin-top: 130px;
+.required{
+    color: red;
 }
 
 .custom-margin-left{
@@ -37,7 +29,7 @@
 .table {
     width: auto;
     max-width: 100%;
-    margin: 0 auto;
+  
     /* Memusatkan tabel di dalam kontainer */
     padding-left: 40px;
     /* Menambahkan jarak kiri */
@@ -55,7 +47,7 @@
 .table td {
     padding: 12px 15px;
     /* Ruang dalam sel */
-    border: none;
+   /
     /* Border untuk semua sel */
 }
 
@@ -74,7 +66,7 @@
 
     .table th,
     .table td {
-        padding: 8px 10px;
+        padding: 10px 10px;
         /* Kurangi padding di layar kecil */
         font-size: 12px;
         /* Kurangi ukuran font */
@@ -93,3 +85,84 @@
  .detail-container {
      width: 100%;
  }
+
+ @media print {
+     @page {
+         margin: 1.5cm;
+         /* Jarak antara pinggir kertas dan konten */
+     }
+
+     .print-container {
+         padding: 0;
+         /* Menghapus padding jika margin sudah diatur di @page */
+         box-sizing: border-box;
+         /* Termasuk margin dalam ukuran elemen */
+         width: 100%;
+
+         margin-bottom: 0;
+         /* Menghapus margin bawah */
+     }
+
+     body {
+         margin: 0;
+         /* Menghapus margin default body untuk mencetak */
+         font-size: 10pt;
+     }
+ }
+
+ @media (max-width: 768px) {
+     .custom-margin-center {
+         margin-top: 1rem;
+         margin-bottom: 1rem;
+     }
+
+     .custom-margin-table {
+         margin: 0.5rem 1rem;
+     }
+
+     .object-fit-cover {
+         max-width: 5rem;
+         max-height: 7rem;
+     }
+
+     .table {
+         font-size: 0.875rem;
+         /* Kurangi ukuran teks tabel */
+     }
+     .table td,
+         .table th,
+         .table input {
+             font-size: 11px;
+             padding: 3px;
+         }
+ }
+
+ /* Responsif untuk layar ponsel (maksimum lebar 576px) */
+ @media (max-width: 576px) {
+     .custom-margin-center {
+         margin-top: 0.5rem;
+         margin-bottom: 0.5rem;
+     }
+
+     .custom-margin-table {
+         margin: 0.5rem;
+     }
+
+     .object-fit-cover {
+         max-width: 4rem;
+         max-height: 6rem;
+     }
+    }
+
+        /* Hilangkan panah untuk input number di Chrome, Safari, Edge, Opera */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    
+        /* Hilangkan panah di Firefox */
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+

@@ -2,6 +2,7 @@ export const validateForm = (formData, setError) => {
   let valid = true;
   const newErrors = {
     student_name: "",
+    student_card_number: "",
     family_card_number: "",
     student_gender: "",
     place_birth: "",
@@ -38,8 +39,10 @@ export const validateForm = (formData, setError) => {
      school_status: "",
     school_address: "",
     ijazah_number: "",
-    major_choice: "",
+    major_choice1: "",
+    major_choice2: "",
     nisn: "",
+    student_picture: "",
     studentDocument: "",
 
     mathematics1: "",
@@ -65,10 +68,17 @@ export const validateForm = (formData, setError) => {
     english3: "",
     english4: "",
     english5: "",
+    interview_score: "",
+    health_score: "",
+
   };
 
   if (!formData.student_name) {
     newErrors.student_name = "wajib diisi";
+    valid = false;
+  }
+  if (!formData.student_card_number) {
+    newErrors.student_card_number = "wajib diisi";
     valid = false;
   }
   if (!formData.family_card_number) {
@@ -184,8 +194,12 @@ export const validateForm = (formData, setError) => {
     newErrors.ijazah_number = "wajib diisi";
     valid = false;
   }
-  if (!formData.major_choice) {
-    newErrors.major_choice = "wajib diisi";
+  if (!formData.major_choice1) {
+    newErrors.major_choice1 = "wajib diisi";
+    valid = false;
+  }
+  if (!formData.major_choice2) {
+    newErrors.major_choice2 = "wajib diisi";
     valid = false;
   }
   if (!formData.nisn) {
@@ -242,7 +256,7 @@ export const validateForm = (formData, setError) => {
     valid = false;
   }
   if (!formData.indonesian1) {
-    newErrors.indonesian2 = "wajib diisi";
+    newErrors.indonesian1 = "wajib diisi";
     valid = false;
   }
   if (!formData.indonesian2) {
@@ -286,6 +300,10 @@ export const validateForm = (formData, setError) => {
     valid = false;
   }
 
+  if (!formData.student_picture) {
+    newErrors.student_picture = "wajib diisi";
+    valid = false;
+  }
   if (!formData.studentDocument) {
     newErrors.studentDocument = "wajib diisi";
     valid = false;
@@ -300,6 +318,7 @@ export const validateForm = (formData, setError) => {
 export const dataStudent = (formData) => {
   const formStudent = {
     student_name: formData.student_name,
+    student_card_number:formData.student_card_number,
     family_card_number:formData.family_card_number,
     student_gender: formData.student_gender,
     place_birth: formData.place_birth,
@@ -336,11 +355,12 @@ export const dataStudent = (formData) => {
     school_status:formData.school_status,
     school_address: formData.school_address,
     ijazah_number: formData.ijazah_number,
-    major_choice: formData.major_choice,
+    major_choice1: formData.major_choice1,
+    major_choice2: formData.major_choice2,
     nisn: formData.nisn,
+    student_picture:formData.student_picture,
     studentDocument: formData.studentDocument,
-    // studentDocument: formData.studentDocument instanceof File ? formData.studentDocument : null,
-
+   
     mathematics1: formData.mathematics1,
     mathematics2: formData.mathematics2,
     mathematics3: formData.mathematics3,
@@ -364,6 +384,11 @@ export const dataStudent = (formData) => {
     english3: formData.english3,
     english4: formData.english4,
     english5: formData.english5,
+
+    health_score: Number(formData.health_score) || 3,
+    interview_score: Number(formData.interview_score) || 3,
+
+
   };
   console.log(formStudent);
 
@@ -379,21 +404,20 @@ export const dataStudent = (formData) => {
 export const dataRegister = (form) => {
   const formRegister = {
     full_name: form.full_name,
-    age: form.age,
-    email: form.email,
+    user_number: form.user_number,
     password: form.password,
     confirm_password: form.confirm_password,
+    user_role:"student"
   };
   return formRegister;
 };
 export const validateRegister = (form, setError) => {
   let valid = true;
-  const emailRegex = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  // const emailRegex = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
-  const newErrors = {
+const newErrors = {
     full_name: "",
-    age: "",
-    email: "",
+    user_number: "",
     password: "",
     confirm_password: "",
   };
@@ -402,53 +426,81 @@ export const validateRegister = (form, setError) => {
     newErrors.full_name = "wajib diisi";
     valid = false;
   }
-  if (!form.age) {
-    newErrors.age = "wajib diisi";
+
+  if (!form.user_number) {
+    newErrors.user_number = "wajib diisi";
+    valid = false;
+  } else if (form.user_number.length !== 10 || isNaN(form.user_number)) {
+    newErrors.user_number = "Masukkan NISN dengan benar ";
     valid = false;
   }
-  if (!form.email) {
-    newErrors.email = "wajib diisi";
-    valid = false;
-  } else if (!emailRegex(form.email)) {
-    newErrors.email = "Masukkan email yang valid";
-  }
+  // if (!form.email) {
+  //   newErrors.email = "wajib diisi";
+  //   valid = false;
+  // } else if (!emailRegex(form.email)) {
+  //   newErrors.email = "Masukkan email yang valid";
+  // }
+  // Validasi password
+
   if (!form.password) {
-    newErrors.password = "wajib diisi";
+    newErrors.password = "Password wajib diisi.";
+    valid = false;
+  } else if (form.password.length < 6) {
+    newErrors.password = "Password harus memiliki minimal 6 karakter.";
     valid = false;
   }
+
+  // Validasi konfirmasi password
   if (!form.confirm_password) {
-    newErrors.confirm_password = "wajib diisi";
+    newErrors.confirm_password = "Konfirmasi password wajib diisi.";
+    valid = false;
+  } else if (form.confirm_password !== form.password) {
+    newErrors.confirm_password = "Konfirmasi password tidak sesuai dengan password.";
     valid = false;
   }
+
+
   setError(newErrors);
   return valid;
 };
-
 export const loginData = (form) => {
   const formLogin = {
-    email: form.email,
+    user_number: form.user_number,
     password: form.password,
   };
   return formLogin;
 };
 export const validateLogin = (form, setError) => {
   let valid = true;
-  const emailRegex = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  // const emailRegex = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
   const newErrors = {
-    email: "",
+    user_number: "",
     password: "",
   };
-  if (!form.email) {
-    newErrors.email = "Email wajib diisi";
-    valid = false;
-  } else if (!emailRegex(form.email)) {
-    newErrors.email = "Masukkan email yang valid";
-  }
+  // if (!form.email) {
+  //   newErrors.email = "Email wajib diisi";
+  //   valid = false;
+  // } else if (!emailRegex(form.email)) {
+  //   newErrors.email = "Masukkan email yang valid";
+  // }
 
+  if (!form.user_number) {
+    newErrors.user_number = "NISN wajib diisi";
+    valid = false;
+  }
   if (!form.password) {
     newErrors.password = "Password wajib diisi";
     valid = false;
   }
   setError(newErrors);
   return valid;
+};
+
+export const formatDate = (isoString) => {
+  const date = new Date(isoString);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+
+  return `${day}-${month}-${year}`;
 };

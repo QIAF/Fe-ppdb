@@ -2,7 +2,6 @@ import { useLocation, useNavigate } from "react-router";
 import { useState } from "react";
 import { Login } from "../../pages/Login/Login";
 import ImgLogo from "../../assets/images/img-logo-white.png";
-import ImgAi from "../../assets/images/img-ai.png";
 import "./Navbar.css";
 
 function Navbar() {
@@ -17,7 +16,11 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg ">
       <div className="container-fluid fixed">
-        <img src={ImgLogo} style={{}} />
+        <img
+          src={ImgLogo}
+          style={{ maxWidth: "250px", width: "100%" }}
+          alt="Logo"
+        />
         <button
           className="navbar-toggler"
           type="button"

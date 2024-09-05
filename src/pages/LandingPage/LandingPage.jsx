@@ -10,6 +10,7 @@ import Testimonial from "../../components/Testimonial";
 import "./LandingPage.css";
 import ChatBot from "../../components/ChatBot/ChatBot";
 import ChatIcon from "../../components/ChatBot/ChatIcon";
+import Panel from "../../components/Panel/Panel";
 
 function LandingPage() {
   return (
@@ -24,6 +25,7 @@ function LandingPage() {
       <PendaftaranOnline />
       <InfoPendaftaran />
       <Faq />
+      <Panel />
       <Footer />
     </>
   );
